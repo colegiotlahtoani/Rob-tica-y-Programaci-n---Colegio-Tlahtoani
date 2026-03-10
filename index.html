@@ -22,29 +22,31 @@ font-family:Poppins;
 background:linear-gradient(135deg,#4facfe,#00f2fe);
 display:flex;
 justify-content:center;
-align-items:center;
-height:100vh;
-width:100vw;
-overflow:hidden;
+padding:20px;
 }
 
+/* LIBRO */
+
 .book{
-width:95vw;
-height:92vh;
-max-width:1400px;
+
+width:100%;
+max-width:900px;
 background:white;
 border-radius:20px;
 box-shadow:0 25px 50px rgba(0,0,0,.2);
-display:flex;
-flex-direction:column;
 overflow:hidden;
+
 }
 
+/* HEADER */
+
 .header{
+
 background:#4facfe;
 color:white;
-padding:clamp(15px,2vw,30px);
+padding:30px;
 text-align:center;
+
 }
 
 .header h1{
@@ -54,79 +56,96 @@ font-size:clamp(28px,4vw,40px);
 
 .header p{
 margin-top:5px;
-font-size:clamp(16px,2vw,20px);
+font-size:clamp(18px,2vw,22px);
 }
 
+/* CONTENIDO */
+
 .content{
-flex:1;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:clamp(15px,2vw,30px);
-padding:clamp(20px,3vw,40px);
-overflow:auto;
+
+display:flex;
+flex-direction:column;
+gap:25px;
+padding:30px;
+
 }
 
 .card{
+
 background:#f6f9ff;
 border-radius:15px;
-padding:clamp(20px,2vw,30px);
-display:flex;
-flex-direction:column;
+padding:25px;
+
 }
 
 h2{
 margin-top:0;
-font-size:clamp(22px,2.5vw,28px);
+font-size:clamp(24px,2.5vw,30px);
 }
 
 p{
-font-size:clamp(16px,1.5vw,18px);
+font-size:clamp(18px,2vw,20px);
+line-height:1.6;
 }
 
+/* EJEMPLOS */
+
 .examples{
+
 display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:clamp(10px,1vw,15px);
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
 margin-top:10px;
+
 }
 
 .example{
+
 background:white;
-padding:clamp(12px,1.5vw,18px);
+padding:18px;
 border-radius:10px;
 text-align:center;
-font-size:clamp(20px,2vw,24px);
+font-size:22px;
 box-shadow:0 3px 8px rgba(0,0,0,.1);
+
 }
 
+/* CANVAS */
+
 canvas{
+
 width:100%;
-height:clamp(220px,35vh,350px);
+height:320px;
 background:white;
 border:2px solid #ccc;
 border-radius:10px;
 touch-action:auto;
+
 }
 
 /* BOTONES */
 
 .buttons{
+
 margin-top:15px;
 display:flex;
 gap:10px;
 flex-wrap:wrap;
+
 }
 
 button{
+
 flex:1;
-padding:clamp(10px,1.5vw,14px);
-font-size:clamp(14px,1.5vw,18px);
+padding:14px;
+font-size:18px;
 border:none;
 border-radius:10px;
 background:#4CAF50;
 color:white;
 cursor:pointer;
 transition:.2s;
+
 }
 
 button.active{
@@ -137,33 +156,20 @@ button:hover{
 transform:scale(1.05);
 }
 
+/* NAVEGACION */
+
 .nav{
+
 display:flex;
 justify-content:space-between;
-padding:clamp(12px,1.5vw,18px);
+padding:20px;
 background:#f1f1f1;
+
 }
 
 .nav button{
+
 background:#4facfe;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-
-.content{
-grid-template-columns:1fr;
-}
-
-body{
-overflow:auto;
-height:auto;
-}
-
-.book{
-height:auto;
-}
 
 }
 
