@@ -5,20 +5,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Manual Digital - Unidad 1</title>
+<title>Manual Digital | Unidad 1</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 
+*{
+box-sizing:border-box;
+}
+
 body{
+
 margin:0;
-background:#e9f2ff;
 font-family:Poppins;
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+
 display:flex;
 justify-content:center;
 align-items:center;
+
 height:100vh;
+width:100vw;
+
+overflow:hidden;
+
 }
 
 /* CONTENEDOR DEL LIBRO */
@@ -26,17 +37,20 @@ height:100vh;
 .book{
 
 width:95vw;
-max-width:1100px;
-height:85vh;
+height:92vh;
+
+max-width:1400px;
 
 background:white;
 
 border-radius:20px;
 
-box-shadow:0 20px 40px rgba(0,0,0,.2);
+box-shadow:0 25px 50px rgba(0,0,0,.2);
 
 display:flex;
 flex-direction:column;
+
+overflow:hidden;
 
 }
 
@@ -44,10 +58,26 @@ flex-direction:column;
 
 .header{
 
-padding:20px;
 background:#4facfe;
 color:white;
+
+padding:clamp(15px,2vw,30px);
+
 text-align:center;
+
+}
+
+.header h1{
+
+margin:0;
+font-size:clamp(28px,4vw,40px);
+
+}
+
+.header p{
+
+margin-top:5px;
+font-size:clamp(16px,2vw,20px);
 
 }
 
@@ -56,10 +86,13 @@ text-align:center;
 .content{
 
 flex:1;
+
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:25px;
-padding:25px;
+
+gap:clamp(15px,2vw,30px);
+
+padding:clamp(20px,3vw,40px);
 
 overflow:auto;
 
@@ -69,9 +102,29 @@ overflow:auto;
 
 .card{
 
-background:#f7faff;
-padding:20px;
+background:#f6f9ff;
+
 border-radius:15px;
+
+padding:clamp(20px,2vw,30px);
+
+display:flex;
+flex-direction:column;
+
+}
+
+/* TITULOS */
+
+h2{
+
+margin-top:0;
+font-size:clamp(22px,2.5vw,28px);
+
+}
+
+p{
+
+font-size:clamp(16px,1.5vw,18px);
 
 }
 
@@ -80,8 +133,8 @@ border-radius:15px;
 .examples{
 
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+grid-template-columns:repeat(2,1fr);
+gap:clamp(10px,1vw,15px);
 margin-top:10px;
 
 }
@@ -89,10 +142,16 @@ margin-top:10px;
 .example{
 
 background:white;
-padding:15px;
+
+padding:clamp(12px,1.5vw,18px);
+
 border-radius:10px;
+
 text-align:center;
-font-size:20px;
+
+font-size:clamp(20px,2vw,24px);
+
+box-shadow:0 3px 8px rgba(0,0,0,.1);
 
 }
 
@@ -101,10 +160,14 @@ font-size:20px;
 canvas{
 
 width:100%;
-height:250px;
+height:clamp(220px,35vh,350px);
+
 background:white;
+
 border:2px solid #ccc;
+
 border-radius:10px;
+
 touch-action:none;
 
 }
@@ -113,44 +176,85 @@ touch-action:none;
 
 .buttons{
 
-margin-top:10px;
+margin-top:15px;
+
 display:flex;
 gap:10px;
+
+flex-wrap:wrap;
 
 }
 
 button{
 
 flex:1;
-padding:10px;
+
+padding:clamp(10px,1.5vw,14px);
+
+font-size:clamp(14px,1.5vw,18px);
+
 border:none;
+
 border-radius:10px;
+
 background:#4CAF50;
+
 color:white;
-font-size:16px;
+
 cursor:pointer;
+
+transition:.2s;
 
 }
 
-/* NAVEGACIÓN */
+button:hover{
+
+background:#43a047;
+
+transform:scale(1.05);
+
+}
+
+/* NAV */
 
 .nav{
 
 display:flex;
 justify-content:space-between;
-padding:15px;
 
-background:#f0f0f0;
+padding:clamp(12px,1.5vw,18px);
+
+background:#f1f1f1;
 
 }
 
-/* CELULAR */
+.nav button{
 
-@media(max-width:800px){
+background:#4facfe;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
 
 .content{
 
 grid-template-columns:1fr;
+
+}
+
+body{
+
+overflow:auto;
+
+height:auto;
+
+}
+
+.book{
+
+height:auto;
 
 }
 
@@ -175,13 +279,13 @@ grid-template-columns:1fr;
 
 <div class="card">
 
-<h2>Explicación</h2>
+<h2>📚 Explicación</h2>
 
 <p>
 La tecnología son herramientas que usamos para resolver problemas o hacer nuestra vida más fácil.
 </p>
 
-<h3>Ejemplos</h3>
+<h2>Ejemplos</h2>
 
 <div class="examples">
 
@@ -196,7 +300,7 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <div class="card">
 
-<h2>Actividad</h2>
+<h2>🎨 Actividad</h2>
 
 <p>Dibuja 3 tecnologías que usas todos los días.</p>
 
@@ -204,10 +308,13 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <div class="buttons">
 
-<button onclick="clearCanvas()">Borrar</button>
-<button onclick="saveDrawing()">Guardar</button>
+<button onclick="clearCanvas()">🧹 Borrar</button>
+
+<button onclick="saveDrawing()">💾 Guardar</button>
 
 </div>
+
+<p id="message"></p>
 
 </div>
 
@@ -216,6 +323,7 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 <div class="nav">
 
 <button>⬅ Unidad anterior</button>
+
 <button>Siguiente unidad ➡</button>
 
 </div>
@@ -239,6 +347,7 @@ canvas.height=rect.height
 }
 
 resizeCanvas()
+
 window.addEventListener("resize",resizeCanvas)
 
 canvas.addEventListener("pointerdown",e=>{
@@ -256,6 +365,11 @@ drawing=false
 ctx.beginPath()
 })
 
+canvas.addEventListener("pointerleave",()=>{
+drawing=false
+ctx.beginPath()
+})
+
 function draw(e){
 
 const rect=canvas.getBoundingClientRect()
@@ -265,6 +379,7 @@ const y=e.clientY-rect.top
 
 ctx.lineWidth=5
 ctx.lineCap="round"
+ctx.strokeStyle="#000"
 
 ctx.lineTo(x,y)
 ctx.stroke()
@@ -284,10 +399,12 @@ function saveDrawing(){
 
 let link=document.createElement("a")
 
-link.download="dibujo.png"
+link.download="dibujo_tecnologia.png"
 link.href=canvas.toDataURL()
 
 link.click()
+
+message.innerHTML="✅ ¡Dibujo guardado!"
 
 }
 
