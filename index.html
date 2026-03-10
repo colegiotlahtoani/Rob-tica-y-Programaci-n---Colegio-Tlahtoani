@@ -22,14 +22,14 @@ padding:40px;
 }
 
 header h1{
-font-size:42px;
+font-size:40px;
 margin:0;
 }
 
 .container{
 max-width:1000px;
 margin:auto;
-padding:30px;
+padding:25px;
 }
 
 .card{
@@ -37,7 +37,6 @@ background:white;
 padding:35px;
 border-radius:20px;
 box-shadow:0 10px 30px rgba(0,0,0,.2);
-margin-bottom:30px;
 }
 
 .examples{
@@ -48,7 +47,7 @@ margin-top:20px;
 }
 
 .example{
-background:#f0f6ff;
+background:#eef4ff;
 padding:20px;
 border-radius:12px;
 font-size:20px;
@@ -66,7 +65,15 @@ canvas{
 border:3px solid #ccc;
 border-radius:10px;
 background:white;
+width:100%;
+max-width:800px;
+height:400px;
+touch-action:none;
 cursor:crosshair;
+}
+
+.tools{
+margin-top:10px;
 }
 
 button{
@@ -75,16 +82,13 @@ color:white;
 border:none;
 padding:10px 20px;
 border-radius:8px;
-margin-top:10px;
+margin:5px;
 cursor:pointer;
+font-size:16px;
 }
 
 button:hover{
 background:#43a047;
-}
-
-.tools{
-margin-top:10px;
 }
 
 </style>
@@ -110,7 +114,7 @@ margin-top:10px;
 La tecnología son herramientas que usamos para resolver problemas o hacer nuestra vida más fácil.
 </p>
 
-<h3>Ejemplos de tecnología:</h3>
+<h3>Ejemplos:</h3>
 
 <div class="examples">
 
@@ -127,16 +131,16 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <p>Dibuja 3 tecnologías que uses todos los días.</p>
 
-<canvas id="drawingCanvas" width="800" height="400"></canvas>
+<canvas id="canvas"></canvas>
 
 <div class="tools">
 
 <button onclick="clearCanvas()">🧹 Borrar</button>
-<button onclick="saveDrawing()">💾 Guardar dibujo</button>
+<button onclick="saveDrawing()">💾 Guardar</button>
 
 </div>
 
-<p id="saved"></p>
+<p id="message"></p>
 
 </div>
 
@@ -146,27 +150,66 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <script>
 
-const canvas = document.getElementById("drawingCanvas");
+const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-let drawing = false;
+let drawing=false;
 
-canvas.addEventListener("mousedown", () => drawing = true);
-canvas.addEventListener("mouseup", () => drawing = false);
-canvas.addEventListener("mousemove", draw);
+function resizeCanvas(){
 
-function draw(event){
+const rect=canvas.getBoundingClientRect();
 
-if(!drawing) return;
+canvas.width=rect.width;
+canvas.height=rect.height;
 
-ctx.lineWidth = 4;
-ctx.lineCap = "round";
-ctx.strokeStyle = "#000";
+}
 
-ctx.lineTo(event.offsetX,event.offsetY);
+resizeCanvas();
+window.addEventListener("resize",resizeCanvas);
+
+canvas.addEventListener("pointerdown",(e)=>{
+
+drawing=true;
+draw(e);
+
+});
+
+canvas.addEventListener("pointermove",(e)=>{
+
+if(!drawing)return;
+draw(e);
+
+});
+
+canvas.addEventListener("pointerup",()=>{
+
+drawing=false;
+ctx.beginPath();
+
+});
+
+canvas.addEventListener("pointerleave",()=>{
+
+drawing=false;
+ctx.beginPath();
+
+});
+
+function draw(e){
+
+const rect=canvas.getBoundingClientRect();
+
+const x=e.clientX-rect.left;
+const y=e.clientY-rect.top;
+
+ctx.lineWidth=5;
+ctx.lineCap="round";
+ctx.strokeStyle="#000";
+
+ctx.lineTo(x,y);
 ctx.stroke();
 ctx.beginPath();
-ctx.moveTo(event.offsetX,event.offsetY);
+ctx.moveTo(x,y);
 
 }
 
@@ -180,12 +223,12 @@ function saveDrawing(){
 
 let link=document.createElement("a");
 
-link.download="mi-dibujo-tecnologia.png";
+link.download="mi_dibujo_tecnologia.png";
 link.href=canvas.toDataURL();
 
 link.click();
 
-document.getElementById("saved").innerHTML="✅ ¡Dibujo guardado!"
+document.getElementById("message").innerHTML="✅ ¡Dibujo guardado!";
 
 }
 
