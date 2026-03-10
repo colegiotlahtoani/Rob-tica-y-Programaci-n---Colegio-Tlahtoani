@@ -148,6 +148,8 @@ background:#f1f1f1;
 background:#4facfe;
 }
 
+/* RESPONSIVE */
+
 @media(max-width:900px){
 
 .content{
@@ -263,13 +265,11 @@ canvas.height = rect.height
 if(saved){
 
 const img = new Image()
-
 img.src = saved
 
 img.onload = () => {
 
 ctx.drawImage(img,0,0,canvas.width,canvas.height)
-
 locked = true
 
 }
@@ -287,7 +287,6 @@ canvas.addEventListener("pointerdown", e => {
 if(locked || tool === null) return
 
 drawing = true
-
 draw(e)
 
 })
@@ -348,6 +347,13 @@ ctx.moveTo(x,y)
 
 function setTool(t){
 
+if(locked){
+
+message.innerHTML = "🔒 Presiona 'Editar' para modificar el dibujo"
+return
+
+}
+
 tool = t
 
 penBtn.classList.remove("active")
@@ -375,7 +381,6 @@ message.innerHTML = "✅ Dibujo guardado"
 function enableEdit(){
 
 locked = false
-
 tool = null
 
 penBtn.classList.remove("active")
