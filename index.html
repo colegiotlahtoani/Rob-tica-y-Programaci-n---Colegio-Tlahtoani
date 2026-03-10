@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Robótica y Programación | Colegio Tlahtoani</title>
+<title>Unidad 1 - Tecnología | Colegio Tlahtoani</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -12,51 +12,61 @@
 body{
 font-family:Poppins;
 margin:0;
-background:linear-gradient(135deg,#5f9cff,#6fe7dd);
+background:linear-gradient(135deg,#4facfe,#00f2fe);
 }
 
 header{
 text-align:center;
-padding:40px;
 color:white;
+padding:40px;
 }
 
 header h1{
-font-size:48px;
+font-size:42px;
 margin:0;
 }
 
 .container{
-max-width:1100px;
+max-width:1000px;
 margin:auto;
 padding:30px;
 }
 
-.section{
+.card{
 background:white;
-padding:30px;
+padding:35px;
 border-radius:20px;
-margin-bottom:30px;
 box-shadow:0 10px 30px rgba(0,0,0,.2);
+margin-bottom:30px;
 }
 
-h2{
-margin-top:0;
-color:#2c3e50;
+.examples{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+margin-top:20px;
+}
+
+.example{
+background:#f0f6ff;
+padding:20px;
+border-radius:12px;
+font-size:20px;
+text-align:center;
 }
 
 .activity{
-background:#eef4ff;
-padding:20px;
-border-radius:10px;
-margin-top:15px;
+background:#fff7d6;
+padding:25px;
+border-radius:15px;
+margin-top:25px;
 }
 
-.challenge{
-background:#fff3cd;
-padding:20px;
+canvas{
+border:3px solid #ccc;
 border-radius:10px;
-margin-top:15px;
+background:white;
+cursor:crosshair;
 }
 
 button{
@@ -65,61 +75,16 @@ color:white;
 border:none;
 padding:10px 20px;
 border-radius:8px;
-cursor:pointer;
 margin-top:10px;
+cursor:pointer;
 }
 
 button:hover{
 background:#43a047;
 }
 
-.progressbar{
-height:20px;
-background:#ddd;
-border-radius:10px;
-overflow:hidden;
-margin-bottom:30px;
-}
-
-.progress{
-height:100%;
-width:0%;
-background:#4CAF50;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(5,60px);
-gap:5px;
-margin-top:20px;
-}
-
-.cell{
-width:60px;
-height:60px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-background:#e0e0e0;
-border-radius:8px;
-}
-
-.block{
-display:inline-block;
-padding:10px;
-margin:5px;
-background:#90caf9;
-border-radius:8px;
-cursor:pointer;
-}
-
-.program{
-background:#f5f5f5;
-padding:10px;
-border-radius:8px;
+.tools{
 margin-top:10px;
-min-height:40px;
 }
 
 </style>
@@ -130,162 +95,50 @@ min-height:40px;
 
 <header>
 
-<h1>🤖 Robótica y Programación</h1>
-<p>Colegio Tlahtoani</p>
+<h1>Unidad 1</h1>
+<p>¿Qué es la tecnología?</p>
 
 </header>
 
 <div class="container">
 
-<div class="progressbar">
-<div class="progress" id="progress"></div>
+<div class="card">
+
+<h2>📚 Explicación</h2>
+
+<p>
+La tecnología son herramientas que usamos para resolver problemas o hacer nuestra vida más fácil.
+</p>
+
+<h3>Ejemplos de tecnología:</h3>
+
+<div class="examples">
+
+<div class="example">📱 Celular</div>
+<div class="example">💻 Computadora</div>
+<div class="example">🤖 Robot</div>
+<div class="example">🚦 Semáforo</div>
+
 </div>
-
-<!-- UNIDAD 1 -->
-
-<div class="section">
-
-<h2>Unidad 1: Tecnología</h2>
-
-<p>La tecnología son herramientas que ayudan a resolver problemas.</p>
 
 <div class="activity">
 
-<p>Selecciona cuáles son tecnologías:</p>
+<h2>🎨 Actividad</h2>
 
-<label><input type="checkbox" id="t1"> Celular</label><br>
-<label><input type="checkbox" id="t2"> Robot</label><br>
-<label><input type="checkbox" id="t3"> Árbol</label><br>
+<p>Dibuja 3 tecnologías que uses todos los días.</p>
 
-<button onclick="checkTech()">Revisar</button>
+<canvas id="drawingCanvas" width="800" height="400"></canvas>
 
-<p id="techResult"></p>
+<div class="tools">
 
-</div>
-
-</div>
-
-<!-- UNIDAD 2 -->
-
-<div class="section">
-
-<h2>Unidad 2: Pensamiento lógico</h2>
-
-<p>Ordena los pasos para hacer un sándwich.</p>
-
-<select id="s1">
-<option>Elegir</option>
-<option>Abrir pan</option>
-<option>Poner jamón</option>
-<option>Poner queso</option>
-<option>Cerrar pan</option>
-</select>
-
-<select id="s2">
-<option>Elegir</option>
-<option>Abrir pan</option>
-<option>Poner jamón</option>
-<option>Poner queso</option>
-<option>Cerrar pan</option>
-</select>
-
-<select id="s3">
-<option>Elegir</option>
-<option>Abrir pan</option>
-<option>Poner jamón</option>
-<option>Poner queso</option>
-<option>Cerrar pan</option>
-</select>
-
-<select id="s4">
-<option>Elegir</option>
-<option>Abrir pan</option>
-<option>Poner jamón</option>
-<option>Poner queso</option>
-<option>Cerrar pan</option>
-</select>
-
-<br><br>
-
-<button onclick="checkSandwich()">Revisar</button>
-
-<p id="logicResult"></p>
+<button onclick="clearCanvas()">🧹 Borrar</button>
+<button onclick="saveDrawing()">💾 Guardar dibujo</button>
 
 </div>
 
-<!-- UNIDAD 3 -->
-
-<div class="section">
-
-<h2>Unidad 3: Programar</h2>
-
-<p>Haz que el robot llegue a la estrella.</p>
-
-<div class="grid" id="grid"></div>
-
-<div>
-
-<div class="block" onclick="addCmd('right')">➡️</div>
-<div class="block" onclick="addCmd('down')">⬇️</div>
+<p id="saved"></p>
 
 </div>
-
-<div class="program" id="program"></div>
-
-<button onclick="runProgram()">Ejecutar</button>
-
-<p id="robotResult"></p>
-
-</div>
-
-<!-- UNIDAD 4 -->
-
-<div class="section">
-
-<h2>Unidad 4: Programación básica</h2>
-
-<p>Selecciona qué es programar.</p>
-
-<label><input type="radio" name="prog" value="a"> Dar instrucciones a una computadora</label><br>
-<label><input type="radio" name="prog" value="b"> Dibujar en papel</label><br>
-
-<button onclick="checkProg()">Revisar</button>
-
-<p id="progResult"></p>
-
-</div>
-
-<!-- UNIDAD 5 -->
-
-<div class="section">
-
-<h2>Unidad 5: Robótica</h2>
-
-<p>¿Qué partes tiene un robot?</p>
-
-<label><input type="checkbox" id="r1"> Sensores</label><br>
-<label><input type="checkbox" id="r2"> Motores</label><br>
-<label><input type="checkbox" id="r3"> Hojas de árbol</label><br>
-
-<button onclick="checkRobot()">Revisar</button>
-
-<p id="robotParts"></p>
-
-</div>
-
-<!-- UNIDAD 6 -->
-
-<div class="section">
-
-<h2>Unidad 6: Proyecto Final</h2>
-
-<p>Escribe qué robot te gustaría construir.</p>
-
-<textarea id="project" rows="4" style="width:100%"></textarea>
-
-<button onclick="finishCourse()">Terminar curso</button>
-
-<p id="final"></p>
 
 </div>
 
@@ -293,158 +146,46 @@ min-height:40px;
 
 <script>
 
-let progress=0
+const canvas = document.getElementById("drawingCanvas");
+const ctx = canvas.getContext("2d");
 
-function updateProgress(){
+let drawing = false;
 
-progress+=16
+canvas.addEventListener("mousedown", () => drawing = true);
+canvas.addEventListener("mouseup", () => drawing = false);
+canvas.addEventListener("mousemove", draw);
 
-if(progress>100)progress=100
+function draw(event){
 
-document.getElementById("progress").style.width=progress+"%"
+if(!drawing) return;
 
-}
+ctx.lineWidth = 4;
+ctx.lineCap = "round";
+ctx.strokeStyle = "#000";
 
-function checkTech(){
-
-if(t1.checked && t2.checked && !t3.checked){
-
-techResult.innerHTML="🎉 Correcto"
-updateProgress()
-
-}else{
-
-techResult.innerHTML="Intenta otra vez"
-
-}
+ctx.lineTo(event.offsetX,event.offsetY);
+ctx.stroke();
+ctx.beginPath();
+ctx.moveTo(event.offsetX,event.offsetY);
 
 }
 
-function checkSandwich(){
+function clearCanvas(){
 
-let correct=["Abrir pan","Poner jamón","Poner queso","Cerrar pan"]
-
-let ans=[s1.value,s2.value,s3.value,s4.value]
-
-let ok=true
-
-for(let i=0;i<4;i++){
-
-if(ans[i]!=correct[i])ok=false
+ctx.clearRect(0,0,canvas.width,canvas.height);
 
 }
 
-logicResult.innerHTML=ok?"🎉 Correcto":"Intenta otra vez"
+function saveDrawing(){
 
-if(ok)updateProgress()
+let link=document.createElement("a");
 
-}
+link.download="mi-dibujo-tecnologia.png";
+link.href=canvas.toDataURL();
 
-let robot={x:0,y:0}
-let goal={x:4,y:2}
-let cmds=[]
+link.click();
 
-function drawGrid(){
-
-grid.innerHTML=""
-
-for(let y=0;y<3;y++){
-
-for(let x=0;x<5;x++){
-
-let c=document.createElement("div")
-c.className="cell"
-
-if(robot.x==x && robot.y==y)c.innerHTML="🤖"
-
-else if(goal.x==x && goal.y==y)c.innerHTML="⭐"
-
-grid.appendChild(c)
-
-}
-
-}
-
-}
-
-drawGrid()
-
-function addCmd(c){
-
-cmds.push(c)
-
-program.innerHTML+=c+" "
-
-}
-
-function runProgram(){
-
-robot={x:0,y:0}
-
-for(let c of cmds){
-
-if(c=="right")robot.x++
-
-if(c=="down")robot.y++
-
-}
-
-drawGrid()
-
-if(robot.x==goal.x && robot.y==goal.y){
-
-robotResult.innerHTML="🎉 Llegaste"
-
-updateProgress()
-
-}else{
-
-robotResult.innerHTML="Intenta otra vez"
-
-}
-
-cmds=[]
-program.innerHTML=""
-
-}
-
-function checkProg(){
-
-let ans=document.querySelector('input[name="prog"]:checked')
-
-if(ans && ans.value=="a"){
-
-progResult.innerHTML="🎉 Correcto"
-updateProgress()
-
-}else{
-
-progResult.innerHTML="Incorrecto"
-
-}
-
-}
-
-function checkRobot(){
-
-if(r1.checked && r2.checked && !r3.checked){
-
-robotParts.innerHTML="🎉 Correcto"
-updateProgress()
-
-}else{
-
-robotParts.innerHTML="Intenta otra vez"
-
-}
-
-}
-
-function finishCourse(){
-
-final.innerHTML="🏆 ¡Felicidades terminaste el curso!"
-
-updateProgress()
+document.getElementById("saved").innerHTML="✅ ¡Dibujo guardado!"
 
 }
 
