@@ -29,8 +29,8 @@ padding:20px;
 
 .book{
 
-width:100%;
-max-width:900px;
+width:95vw;
+max-width:1400px;
 background:white;
 border-radius:20px;
 box-shadow:0 25px 50px rgba(0,0,0,.2);
@@ -156,7 +156,7 @@ button:hover{
 transform:scale(1.05);
 }
 
-/* NAVEGACION */
+/* NAVEGACIÓN */
 
 .nav{
 
@@ -170,6 +170,17 @@ background:#f1f1f1;
 .nav button{
 
 background:#4facfe;
+
+}
+
+/* CELULARES */
+
+@media(max-width:700px){
+
+.book{
+width:100%;
+border-radius:0;
+}
 
 }
 
@@ -258,6 +269,7 @@ let locked = false
 
 const penBtn = document.getElementById("penBtn")
 const eraserBtn = document.getElementById("eraserBtn")
+const message = document.getElementById("message")
 
 function resizeCanvas(){
 
