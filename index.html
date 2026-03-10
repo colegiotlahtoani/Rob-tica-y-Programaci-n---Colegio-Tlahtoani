@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
-<title>Robótica Interactiva | Colegio Tlahtoani</title>
+<title>Robótica y Programación | Colegio Tlahtoani</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -11,8 +12,7 @@
 body{
 font-family:Poppins;
 margin:0;
-background:linear-gradient(135deg,#4facfe,#00f2fe);
-color:#333;
+background:linear-gradient(135deg,#5f9cff,#6fe7dd);
 }
 
 header{
@@ -21,13 +21,18 @@ padding:40px;
 color:white;
 }
 
+header h1{
+font-size:48px;
+margin:0;
+}
+
 .container{
 max-width:1100px;
 margin:auto;
 padding:30px;
 }
 
-.card{
+.section{
 background:white;
 padding:30px;
 border-radius:20px;
@@ -37,20 +42,49 @@ box-shadow:0 10px 30px rgba(0,0,0,.2);
 
 h2{
 margin-top:0;
+color:#2c3e50;
+}
+
+.activity{
+background:#eef4ff;
+padding:20px;
+border-radius:10px;
+margin-top:15px;
+}
+
+.challenge{
+background:#fff3cd;
+padding:20px;
+border-radius:10px;
+margin-top:15px;
 }
 
 button{
-padding:10px 20px;
-border:none;
-border-radius:10px;
 background:#4CAF50;
 color:white;
+border:none;
+padding:10px 20px;
+border-radius:8px;
 cursor:pointer;
-margin:5px;
+margin-top:10px;
 }
 
 button:hover{
-background:#3e8e41;
+background:#43a047;
+}
+
+.progressbar{
+height:20px;
+background:#ddd;
+border-radius:10px;
+overflow:hidden;
+margin-bottom:30px;
+}
+
+.progress{
+height:100%;
+width:0%;
+background:#4CAF50;
 }
 
 .grid{
@@ -63,28 +97,12 @@ margin-top:20px;
 .cell{
 width:60px;
 height:60px;
-background:#e0e0e0;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:28px;
+background:#e0e0e0;
 border-radius:8px;
-}
-
-.robot{
-background:#a5d6ff;
-}
-
-.goal{
-background:#ffe082;
-}
-
-.program{
-background:#f5f5f5;
-padding:15px;
-border-radius:10px;
-margin-top:15px;
-min-height:50px;
 }
 
 .block{
@@ -96,28 +114,23 @@ border-radius:8px;
 cursor:pointer;
 }
 
-.progressbar{
-height:20px;
-background:#ddd;
-border-radius:10px;
-overflow:hidden;
-margin-bottom:20px;
-}
-
-.progress{
-height:100%;
-width:0%;
-background:#4CAF50;
+.program{
+background:#f5f5f5;
+padding:10px;
+border-radius:8px;
+margin-top:10px;
+min-height:40px;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
 
-<h1>🤖 Robótica Interactiva</h1>
+<h1>🤖 Robótica y Programación</h1>
 <p>Colegio Tlahtoani</p>
 
 </header>
@@ -128,41 +141,39 @@ background:#4CAF50;
 <div class="progress" id="progress"></div>
 </div>
 
-<!-- UNIDAD ROBOT -->
+<!-- UNIDAD 1 -->
 
-<div class="card">
+<div class="section">
 
-<h2>Reto: Programa al Robot</h2>
+<h2>Unidad 1: Tecnología</h2>
 
-<p>Haz que el robot llegue a la estrella.</p>
+<p>La tecnología son herramientas que ayudan a resolver problemas.</p>
 
-<div class="grid" id="grid"></div>
+<div class="activity">
 
-<div>
+<p>Selecciona cuáles son tecnologías:</p>
 
-<div class="block" onclick="addCommand('up')">⬆️ Avanzar</div>
-<div class="block" onclick="addCommand('right')">➡️ Derecha</div>
-<div class="block" onclick="addCommand('left')">⬅️ Izquierda</div>
+<label><input type="checkbox" id="t1"> Celular</label><br>
+<label><input type="checkbox" id="t2"> Robot</label><br>
+<label><input type="checkbox" id="t3"> Árbol</label><br>
 
-</div>
+<button onclick="checkTech()">Revisar</button>
 
-<div class="program" id="program"></div>
-
-<button onclick="runProgram()">Ejecutar programa</button>
-
-<p id="result"></p>
+<p id="techResult"></p>
 
 </div>
 
-<!-- UNIDAD LOGICA -->
+</div>
 
-<div class="card">
+<!-- UNIDAD 2 -->
 
-<h2>Actividad de Lógica</h2>
+<div class="section">
+
+<h2>Unidad 2: Pensamiento lógico</h2>
 
 <p>Ordena los pasos para hacer un sándwich.</p>
 
-<select id="p1">
+<select id="s1">
 <option>Elegir</option>
 <option>Abrir pan</option>
 <option>Poner jamón</option>
@@ -170,7 +181,7 @@ background:#4CAF50;
 <option>Cerrar pan</option>
 </select>
 
-<select id="p2">
+<select id="s2">
 <option>Elegir</option>
 <option>Abrir pan</option>
 <option>Poner jamón</option>
@@ -178,7 +189,7 @@ background:#4CAF50;
 <option>Cerrar pan</option>
 </select>
 
-<select id="p3">
+<select id="s3">
 <option>Elegir</option>
 <option>Abrir pan</option>
 <option>Poner jamón</option>
@@ -186,7 +197,7 @@ background:#4CAF50;
 <option>Cerrar pan</option>
 </select>
 
-<select id="p4">
+<select id="s4">
 <option>Elegir</option>
 <option>Abrir pan</option>
 <option>Poner jamón</option>
@@ -196,9 +207,85 @@ background:#4CAF50;
 
 <br><br>
 
-<button onclick="checkLogic()">Revisar</button>
+<button onclick="checkSandwich()">Revisar</button>
 
 <p id="logicResult"></p>
+
+</div>
+
+<!-- UNIDAD 3 -->
+
+<div class="section">
+
+<h2>Unidad 3: Programar</h2>
+
+<p>Haz que el robot llegue a la estrella.</p>
+
+<div class="grid" id="grid"></div>
+
+<div>
+
+<div class="block" onclick="addCmd('right')">➡️</div>
+<div class="block" onclick="addCmd('down')">⬇️</div>
+
+</div>
+
+<div class="program" id="program"></div>
+
+<button onclick="runProgram()">Ejecutar</button>
+
+<p id="robotResult"></p>
+
+</div>
+
+<!-- UNIDAD 4 -->
+
+<div class="section">
+
+<h2>Unidad 4: Programación básica</h2>
+
+<p>Selecciona qué es programar.</p>
+
+<label><input type="radio" name="prog" value="a"> Dar instrucciones a una computadora</label><br>
+<label><input type="radio" name="prog" value="b"> Dibujar en papel</label><br>
+
+<button onclick="checkProg()">Revisar</button>
+
+<p id="progResult"></p>
+
+</div>
+
+<!-- UNIDAD 5 -->
+
+<div class="section">
+
+<h2>Unidad 5: Robótica</h2>
+
+<p>¿Qué partes tiene un robot?</p>
+
+<label><input type="checkbox" id="r1"> Sensores</label><br>
+<label><input type="checkbox" id="r2"> Motores</label><br>
+<label><input type="checkbox" id="r3"> Hojas de árbol</label><br>
+
+<button onclick="checkRobot()">Revisar</button>
+
+<p id="robotParts"></p>
+
+</div>
+
+<!-- UNIDAD 6 -->
+
+<div class="section">
+
+<h2>Unidad 6: Proyecto Final</h2>
+
+<p>Escribe qué robot te gustaría construir.</p>
+
+<textarea id="project" rows="4" style="width:100%"></textarea>
+
+<button onclick="finishCourse()">Terminar curso</button>
+
+<p id="final"></p>
 
 </div>
 
@@ -206,37 +293,73 @@ background:#4CAF50;
 
 <script>
 
+let progress=0
+
+function updateProgress(){
+
+progress+=16
+
+if(progress>100)progress=100
+
+document.getElementById("progress").style.width=progress+"%"
+
+}
+
+function checkTech(){
+
+if(t1.checked && t2.checked && !t3.checked){
+
+techResult.innerHTML="🎉 Correcto"
+updateProgress()
+
+}else{
+
+techResult.innerHTML="Intenta otra vez"
+
+}
+
+}
+
+function checkSandwich(){
+
+let correct=["Abrir pan","Poner jamón","Poner queso","Cerrar pan"]
+
+let ans=[s1.value,s2.value,s3.value,s4.value]
+
+let ok=true
+
+for(let i=0;i<4;i++){
+
+if(ans[i]!=correct[i])ok=false
+
+}
+
+logicResult.innerHTML=ok?"🎉 Correcto":"Intenta otra vez"
+
+if(ok)updateProgress()
+
+}
+
 let robot={x:0,y:0}
 let goal={x:4,y:2}
-let commands=[]
+let cmds=[]
 
 function drawGrid(){
 
-let grid=document.getElementById("grid")
 grid.innerHTML=""
 
 for(let y=0;y<3;y++){
 
 for(let x=0;x<5;x++){
 
-let cell=document.createElement("div")
-cell.className="cell"
+let c=document.createElement("div")
+c.className="cell"
 
-if(robot.x==x && robot.y==y){
+if(robot.x==x && robot.y==y)c.innerHTML="🤖"
 
-cell.innerHTML="🤖"
-cell.classList.add("robot")
+else if(goal.x==x && goal.y==y)c.innerHTML="⭐"
 
-}
-
-else if(goal.x==x && goal.y==y){
-
-cell.innerHTML="⭐"
-cell.classList.add("goal")
-
-}
-
-grid.appendChild(cell)
+grid.appendChild(c)
 
 }
 
@@ -246,13 +369,11 @@ grid.appendChild(cell)
 
 drawGrid()
 
-function addCommand(cmd){
+function addCmd(c){
 
-commands.push(cmd)
+cmds.push(c)
 
-let program=document.getElementById("program")
-
-program.innerHTML+=cmd+" "
+program.innerHTML+=c+" "
 
 }
 
@@ -260,13 +381,11 @@ function runProgram(){
 
 robot={x:0,y:0}
 
-for(let c of commands){
-
-if(c=="up")robot.y--
+for(let c of cmds){
 
 if(c=="right")robot.x++
 
-if(c=="left")robot.x--
+if(c=="down")robot.y++
 
 }
 
@@ -274,63 +393,58 @@ drawGrid()
 
 if(robot.x==goal.x && robot.y==goal.y){
 
-document.getElementById("result").innerHTML="🎉 ¡Lo lograste!"
+robotResult.innerHTML="🎉 Llegaste"
+
 updateProgress()
 
 }else{
 
-document.getElementById("result").innerHTML="Intenta otra vez"
+robotResult.innerHTML="Intenta otra vez"
 
 }
 
-commands=[]
-document.getElementById("program").innerHTML=""
+cmds=[]
+program.innerHTML=""
 
 }
 
-function checkLogic(){
+function checkProg(){
 
-let correct=["Abrir pan","Poner jamón","Poner queso","Cerrar pan"]
+let ans=document.querySelector('input[name="prog"]:checked')
 
-let answers=[
+if(ans && ans.value=="a"){
 
-p1.value,
-p2.value,
-p3.value,
-p4.value
-
-]
-
-let ok=true
-
-for(let i=0;i<4;i++){
-
-if(correct[i]!=answers[i])ok=false
-
-}
-
-if(ok){
-
-logicResult.innerHTML="🎉 Correcto!"
+progResult.innerHTML="🎉 Correcto"
 updateProgress()
 
 }else{
 
-logicResult.innerHTML="Intenta otra vez"
+progResult.innerHTML="Incorrecto"
 
 }
 
 }
 
-let progress=0
+function checkRobot(){
 
-function updateProgress(){
+if(r1.checked && r2.checked && !r3.checked){
 
-progress+=50
+robotParts.innerHTML="🎉 Correcto"
+updateProgress()
 
-if(progress>100)progress=100
+}else{
 
-document.getElementById("progress").style.width=progress+"%"
+robotParts.innerHTML="Intenta otra vez"
+
+}
+
+}
+
+function finishCourse(){
+
+final.innerHTML="🏆 ¡Felicidades terminaste el curso!"
+
+updateProgress()
 
 }
 
