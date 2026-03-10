@@ -28,36 +28,23 @@ width:100vw;
 overflow:hidden;
 }
 
-/* LIBRO */
-
 .book{
-
 width:95vw;
 height:92vh;
 max-width:1400px;
-
 background:white;
-
 border-radius:20px;
-
 box-shadow:0 25px 50px rgba(0,0,0,.2);
-
 display:flex;
 flex-direction:column;
-
 overflow:hidden;
-
 }
 
-/* HEADER */
-
 .header{
-
 background:#4facfe;
 color:white;
 padding:clamp(15px,2vw,30px);
 text-align:center;
-
 }
 
 .header h1{
@@ -70,183 +57,108 @@ margin-top:5px;
 font-size:clamp(16px,2vw,20px);
 }
 
-/* CONTENIDO */
-
 .content{
-
 flex:1;
-
 display:grid;
 grid-template-columns:1fr 1fr;
-
 gap:clamp(15px,2vw,30px);
-
 padding:clamp(20px,3vw,40px);
-
 overflow:auto;
-
 }
-
-/* TARJETAS */
 
 .card{
-
 background:#f6f9ff;
-
 border-radius:15px;
-
 padding:clamp(20px,2vw,30px);
-
 display:flex;
 flex-direction:column;
-
 }
 
-/* TEXTO */
-
 h2{
-
 margin-top:0;
 font-size:clamp(22px,2.5vw,28px);
-
 }
 
 p{
-
 font-size:clamp(16px,1.5vw,18px);
-
 }
 
-/* EJEMPLOS */
-
 .examples{
-
 display:grid;
 grid-template-columns:repeat(2,1fr);
-
 gap:clamp(10px,1vw,15px);
-
 margin-top:10px;
-
 }
 
 .example{
-
 background:white;
-
 padding:clamp(12px,1.5vw,18px);
-
 border-radius:10px;
-
 text-align:center;
-
 font-size:clamp(20px,2vw,24px);
-
 box-shadow:0 3px 8px rgba(0,0,0,.1);
-
 }
-
-/* CANVAS */
 
 canvas{
-
 width:100%;
 height:clamp(220px,35vh,350px);
-
 background:white;
-
 border:2px solid #ccc;
-
 border-radius:10px;
-
 touch-action:none;
-
 }
 
-/* BOTONES */
-
 .buttons{
-
 margin-top:15px;
-
 display:flex;
 gap:10px;
-
 flex-wrap:wrap;
-
 }
 
 button{
-
 flex:1;
-
 padding:clamp(10px,1.5vw,14px);
-
 font-size:clamp(14px,1.5vw,18px);
-
 border:none;
-
 border-radius:10px;
-
 background:#4CAF50;
-
 color:white;
-
 cursor:pointer;
-
 transition:.2s;
+}
 
+button.active{
+background:#ff9800;
 }
 
 button:hover{
-
-background:#43a047;
-
 transform:scale(1.05);
-
 }
 
-/* NAV */
-
 .nav{
-
 display:flex;
-
 justify-content:space-between;
-
 padding:clamp(12px,1.5vw,18px);
-
 background:#f1f1f1;
-
 }
 
 .nav button{
-
 background:#4facfe;
-
 }
-
-/* RESPONSIVE */
 
 @media(max-width:900px){
 
 .content{
-
 grid-template-columns:1fr;
-
 }
 
 body{
-
 overflow:auto;
 height:auto;
-
 }
 
 .book{
-
 height:auto;
-
 }
 
 }
@@ -299,9 +211,9 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <div class="buttons">
 
-<button onclick="setTool('pen')">✏️ Lápiz</button>
+<button id="penBtn" onclick="setTool('pen')">✏️ Lápiz</button>
 
-<button onclick="setTool('eraser')">🧽 Borrador</button>
+<button id="eraserBtn" onclick="setTool('eraser')">🧽 Borrador</button>
 
 <button onclick="saveDrawing()">💾 Guardar</button>
 
@@ -331,8 +243,11 @@ const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 
 let drawing = false
-let tool = "pen"
+let tool = null
 let locked = false
+
+const penBtn = document.getElementById("penBtn")
+const eraserBtn = document.getElementById("eraserBtn")
 
 function resizeCanvas(){
 
@@ -367,7 +282,7 @@ window.addEventListener("resize",resizeCanvas)
 
 canvas.addEventListener("pointerdown", e => {
 
-if(locked) return
+if(locked || tool === null) return
 
 drawing = true
 
@@ -377,7 +292,7 @@ draw(e)
 
 canvas.addEventListener("pointermove", e => {
 
-if(!drawing || locked) return
+if(!drawing || locked || tool === null) return
 
 draw(e)
 
@@ -439,6 +354,12 @@ ctx.moveTo(x,y)
 function setTool(t){
 
 tool = t
+
+penBtn.classList.remove("active")
+eraserBtn.classList.remove("active")
+
+if(t === "pen") penBtn.classList.add("active")
+if(t === "eraser") eraserBtn.classList.add("active")
 
 }
 
