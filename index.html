@@ -5,15 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Unidad 1 | Tecnología - Colegio Tlahtoani</title>
+<title>Unidad 1 | Tecnología</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-box-sizing:border-box;
-}
 
 body{
 margin:0;
@@ -24,97 +20,119 @@ background:linear-gradient(135deg,#4facfe,#00f2fe);
 header{
 text-align:center;
 color:white;
-padding:30px 15px;
+padding:25px;
 }
 
 header h1{
 margin:0;
-font-size:clamp(28px,5vw,42px);
-}
-
-header p{
-font-size:clamp(16px,2.5vw,20px);
+font-size:34px;
 }
 
 .container{
-width:95%;
-max-width:1100px;
+max-width:1200px;
 margin:auto;
 padding:20px;
 }
 
-.card{
+.book{
+
 background:white;
 border-radius:20px;
-padding:clamp(20px,4vw,40px);
+padding:30px;
 box-shadow:0 10px 30px rgba(0,0,0,.2);
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+
 }
 
-h2{
-font-size:clamp(22px,3vw,30px);
-}
-
-p{
-font-size:clamp(16px,2.3vw,18px);
+.section h2{
+margin-top:0;
 }
 
 .examples{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+grid-template-columns:repeat(2,1fr);
 gap:15px;
 margin-top:20px;
+
 }
 
 .example{
+
 background:#eef4ff;
 padding:20px;
 border-radius:12px;
+font-size:20px;
 text-align:center;
-font-size:clamp(18px,2.5vw,20px);
+
 }
 
 .activity{
+
 background:#fff7d6;
 padding:20px;
 border-radius:15px;
-margin-top:25px;
+
 }
 
 canvas{
+
 width:100%;
-height:clamp(250px,40vh,400px);
+height:300px;
 background:white;
 border:3px solid #ccc;
 border-radius:10px;
 touch-action:none;
+
 }
 
 .tools{
+
+margin-top:10px;
 display:flex;
-flex-wrap:wrap;
 gap:10px;
-margin-top:15px;
+flex-wrap:wrap;
+
 }
 
 button{
+
 flex:1;
-min-width:120px;
 padding:12px;
-font-size:clamp(16px,2.5vw,18px);
+font-size:16px;
 border:none;
 border-radius:10px;
 background:#4CAF50;
 color:white;
 cursor:pointer;
+
 }
 
 button:hover{
+
 background:#43a047;
+
 }
 
 .message{
+
 margin-top:10px;
-font-weight:500;
+
+}
+
+/* Ajuste para celulares */
+
+@media(max-width:800px){
+
+.book{
+
+grid-template-columns:1fr;
+
+}
+
 }
 
 </style>
@@ -132,7 +150,9 @@ font-weight:500;
 
 <div class="container">
 
-<div class="card">
+<div class="book">
+
+<div class="section">
 
 <h2>📚 Explicación</h2>
 
@@ -140,7 +160,7 @@ font-weight:500;
 La tecnología son herramientas que usamos para resolver problemas o hacer nuestra vida más fácil.
 </p>
 
-<h3>Ejemplos de tecnología</h3>
+<h3>Ejemplos</h3>
 
 <div class="examples">
 
@@ -151,18 +171,20 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 </div>
 
-<div class="activity">
+</div>
+
+<div class="section activity">
 
 <h2>🎨 Actividad</h2>
 
-<p>Dibuja 3 tecnologías que usas todos los días.</p>
+<p>Dibuja 3 tecnologías que uses todos los días.</p>
 
 <canvas id="canvas"></canvas>
 
 <div class="tools">
 
 <button onclick="clearCanvas()">🧹 Borrar</button>
-<button onclick="saveDrawing()">💾 Guardar dibujo</button>
+<button onclick="saveDrawing()">💾 Guardar</button>
 
 </div>
 
@@ -176,77 +198,77 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <script>
 
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("canvas")
+const ctx=canvas.getContext("2d")
 
-let drawing=false;
+let drawing=false
 
 function resizeCanvas(){
 
-const rect=canvas.getBoundingClientRect();
+const rect=canvas.getBoundingClientRect()
 
-canvas.width=rect.width;
-canvas.height=rect.height;
+canvas.width=rect.width
+canvas.height=rect.height
 
 }
 
-resizeCanvas();
-window.addEventListener("resize",resizeCanvas);
+resizeCanvas()
+window.addEventListener("resize",resizeCanvas)
 
-canvas.addEventListener("pointerdown",(e)=>{
-drawing=true;
-draw(e);
-});
+canvas.addEventListener("pointerdown",e=>{
+drawing=true
+draw(e)
+})
 
-canvas.addEventListener("pointermove",(e)=>{
-if(!drawing)return;
-draw(e);
-});
+canvas.addEventListener("pointermove",e=>{
+if(!drawing)return
+draw(e)
+})
 
 canvas.addEventListener("pointerup",()=>{
-drawing=false;
-ctx.beginPath();
-});
+drawing=false
+ctx.beginPath()
+})
 
 canvas.addEventListener("pointerleave",()=>{
-drawing=false;
-ctx.beginPath();
-});
+drawing=false
+ctx.beginPath()
+})
 
 function draw(e){
 
-const rect=canvas.getBoundingClientRect();
+const rect=canvas.getBoundingClientRect()
 
-const x=e.clientX-rect.left;
-const y=e.clientY-rect.top;
+const x=e.clientX-rect.left
+const y=e.clientY-rect.top
 
-ctx.lineWidth=5;
-ctx.lineCap="round";
-ctx.strokeStyle="#000";
+ctx.lineWidth=5
+ctx.lineCap="round"
+ctx.strokeStyle="#000"
 
-ctx.lineTo(x,y);
-ctx.stroke();
-ctx.beginPath();
-ctx.moveTo(x,y);
+ctx.lineTo(x,y)
+ctx.stroke()
+ctx.beginPath()
+ctx.moveTo(x,y)
 
 }
 
 function clearCanvas(){
 
-ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.clearRect(0,0,canvas.width,canvas.height)
 
 }
 
 function saveDrawing(){
 
-let link=document.createElement("a");
+let link=document.createElement("a")
 
-link.download="dibujo_tecnologia.png";
-link.href=canvas.toDataURL();
+link.download="tecnologia.png"
+link.href=canvas.toDataURL()
 
-link.click();
+link.click()
 
-document.getElementById("message").innerHTML="✅ ¡Dibujo guardado!";
+message.innerHTML="✅ ¡Dibujo guardado!"
 
 }
 
