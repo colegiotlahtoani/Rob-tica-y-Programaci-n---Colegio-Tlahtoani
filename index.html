@@ -105,8 +105,10 @@ height:clamp(220px,35vh,350px);
 background:white;
 border:2px solid #ccc;
 border-radius:10px;
-touch-action:none;
+touch-action:auto;
 }
+
+/* BOTONES */
 
 .buttons{
 margin-top:15px;
@@ -301,7 +303,6 @@ draw(e)
 canvas.addEventListener("pointerup", () => {
 
 drawing = false
-
 ctx.beginPath()
 
 })
@@ -309,7 +310,6 @@ ctx.beginPath()
 canvas.addEventListener("pointerleave", () => {
 
 drawing = false
-
 ctx.beginPath()
 
 })
@@ -324,9 +324,7 @@ const y = e.clientY - rect.top
 if(tool === "pen"){
 
 ctx.globalCompositeOperation = "source-over"
-
 ctx.strokeStyle = "#000"
-
 ctx.lineWidth = 5
 
 }
@@ -334,7 +332,6 @@ ctx.lineWidth = 5
 if(tool === "eraser"){
 
 ctx.globalCompositeOperation = "destination-out"
-
 ctx.lineWidth = 25
 
 }
@@ -342,11 +339,9 @@ ctx.lineWidth = 25
 ctx.lineCap = "round"
 
 ctx.lineTo(x,y)
-
 ctx.stroke()
 
 ctx.beginPath()
-
 ctx.moveTo(x,y)
 
 }
@@ -361,6 +356,8 @@ eraserBtn.classList.remove("active")
 if(t === "pen") penBtn.classList.add("active")
 if(t === "eraser") eraserBtn.classList.add("active")
 
+canvas.style.touchAction = "none"
+
 }
 
 function saveDrawing(){
@@ -368,6 +365,8 @@ function saveDrawing(){
 localStorage.setItem("unidad1_dibujo", canvas.toDataURL())
 
 locked = true
+
+canvas.style.touchAction = "auto"
 
 message.innerHTML = "✅ Dibujo guardado"
 
@@ -377,7 +376,14 @@ function enableEdit(){
 
 locked = false
 
-message.innerHTML = "✏️ Puedes seguir editando"
+tool = null
+
+penBtn.classList.remove("active")
+eraserBtn.classList.remove("active")
+
+canvas.style.touchAction = "auto"
+
+message.innerHTML = "✏️ Selecciona una herramienta"
 
 }
 
