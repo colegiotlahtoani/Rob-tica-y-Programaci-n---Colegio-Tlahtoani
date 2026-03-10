@@ -1,369 +1,340 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-<title>Robótica y Programación | Colegio Tlahtoani</title>
+<title>Robótica Interactiva | Colegio Tlahtoani</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-font-family:'Poppins',sans-serif;
+font-family:Poppins;
 margin:0;
-background:linear-gradient(135deg,#5f9cff,#8fd3f4);
+background:linear-gradient(135deg,#4facfe,#00f2fe);
 color:#333;
 }
 
 header{
 text-align:center;
-padding:60px 20px;
+padding:40px;
 color:white;
 }
 
-header h1{
-font-size:50px;
-margin-bottom:10px;
-}
-
-header p{
-font-size:22px;
-opacity:.9;
-}
-
 .container{
-max-width:1200px;
+max-width:1100px;
 margin:auto;
 padding:30px;
 }
 
 .card{
 background:white;
+padding:30px;
 border-radius:20px;
-padding:35px;
-margin-bottom:35px;
-box-shadow:0 15px 40px rgba(0,0,0,.15);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
+margin-bottom:30px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
 }
 
 h2{
-color:#2c3e50;
+margin-top:0;
 }
 
-.activity{
-background:#eef5ff;
-padding:20px;
-border-radius:12px;
-margin-top:15px;
+button{
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:#4CAF50;
+color:white;
+cursor:pointer;
+margin:5px;
 }
 
-.challenge{
-background:#fff6d8;
-padding:20px;
-border-radius:12px;
-margin-top:15px;
-}
-
-.robot{
-font-size:80px;
-text-align:center;
-margin:20px;
+button:hover{
+background:#3e8e41;
 }
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:20px;
+grid-template-columns:repeat(5,60px);
+gap:5px;
 margin-top:20px;
 }
 
-.box{
-background:#f3f3f3;
-padding:20px;
-border-radius:15px;
-text-align:center;
-font-size:20px;
+.cell{
+width:60px;
+height:60px;
+background:#e0e0e0;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+border-radius:8px;
 }
 
-.progress-container{
-width:100%;
-background:#e0e0e0;
-border-radius:20px;
-margin:20px 0;
+.robot{
+background:#a5d6ff;
+}
+
+.goal{
+background:#ffe082;
+}
+
+.program{
+background:#f5f5f5;
+padding:15px;
+border-radius:10px;
+margin-top:15px;
+min-height:50px;
+}
+
+.block{
+display:inline-block;
+padding:10px;
+margin:5px;
+background:#90caf9;
+border-radius:8px;
+cursor:pointer;
+}
+
+.progressbar{
+height:20px;
+background:#ddd;
+border-radius:10px;
+overflow:hidden;
+margin-bottom:20px;
 }
 
 .progress{
+height:100%;
 width:0%;
-height:20px;
 background:#4CAF50;
-border-radius:20px;
-transition:.5s;
-}
-
-button{
-background:#4CAF50;
-border:none;
-padding:12px 25px;
-color:white;
-font-size:16px;
-border-radius:10px;
-cursor:pointer;
-margin-top:10px;
-}
-
-button:hover{
-background:#43a047;
-}
-
-footer{
-text-align:center;
-padding:30px;
-color:white;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <header>
 
-<h1>🤖 Robótica y Programación</h1>
-
-<p>Explora el mundo de la tecnología | Colegio Tlahtoani</p>
+<h1>🤖 Robótica Interactiva</h1>
+<p>Colegio Tlahtoani</p>
 
 </header>
 
 <div class="container">
 
-<div class="progress-container">
+<div class="progressbar">
 <div class="progress" id="progress"></div>
 </div>
 
-<!-- UNIDAD 1 -->
+<!-- UNIDAD ROBOT -->
 
 <div class="card">
 
-<h2>Unidad 1: ¿Qué es la tecnología?</h2>
+<h2>Reto: Programa al Robot</h2>
 
-<div class="robot">🤖</div>
+<p>Haz que el robot llegue a la estrella.</p>
 
-<p>
-La tecnología son herramientas que ayudan a resolver problemas y mejorar nuestra vida.
-</p>
+<div class="grid" id="grid"></div>
 
-<div class="grid">
+<div>
 
-<div class="box">📱 Celular</div>
-<div class="box">💻 Computadora</div>
-<div class="box">🚦 Semáforo</div>
-<div class="box">🤖 Robot</div>
+<div class="block" onclick="addCommand('up')">⬆️ Avanzar</div>
+<div class="block" onclick="addCommand('right')">➡️ Derecha</div>
+<div class="block" onclick="addCommand('left')">⬅️ Izquierda</div>
 
 </div>
 
-<div class="activity">
+<div class="program" id="program"></div>
 
-<h3>Actividad</h3>
+<button onclick="runProgram()">Ejecutar programa</button>
 
-<p>Dibuja 3 tecnologías que uses todos los días.</p>
-
-<button onclick="completeUnit()">Terminé la actividad</button>
+<p id="result"></p>
 
 </div>
 
-</div>
-
-<!-- UNIDAD 2 -->
+<!-- UNIDAD LOGICA -->
 
 <div class="card">
 
-<h2>Unidad 2: Pensamiento lógico</h2>
-
-<p>
-Pensar como programador significa resolver problemas paso a paso.
-</p>
-
-<p>Ejemplo: Cepillarse los dientes</p>
-
-<ol>
-
-<li>Tomar cepillo</li>
-<li>Poner pasta</li>
-<li>Cepillar dientes</li>
-<li>Enjuagar</li>
-
-</ol>
-
-<div class="challenge">
-
-<h3>Reto</h3>
+<h2>Actividad de Lógica</h2>
 
 <p>Ordena los pasos para hacer un sándwich.</p>
 
-<button onclick="completeUnit()">Reto completado</button>
+<select id="p1">
+<option>Elegir</option>
+<option>Abrir pan</option>
+<option>Poner jamón</option>
+<option>Poner queso</option>
+<option>Cerrar pan</option>
+</select>
+
+<select id="p2">
+<option>Elegir</option>
+<option>Abrir pan</option>
+<option>Poner jamón</option>
+<option>Poner queso</option>
+<option>Cerrar pan</option>
+</select>
+
+<select id="p3">
+<option>Elegir</option>
+<option>Abrir pan</option>
+<option>Poner jamón</option>
+<option>Poner queso</option>
+<option>Cerrar pan</option>
+</select>
+
+<select id="p4">
+<option>Elegir</option>
+<option>Abrir pan</option>
+<option>Poner jamón</option>
+<option>Poner queso</option>
+<option>Cerrar pan</option>
+</select>
+
+<br><br>
+
+<button onclick="checkLogic()">Revisar</button>
+
+<p id="logicResult"></p>
 
 </div>
 
 </div>
-
-<!-- UNIDAD 3 -->
-
-<div class="card">
-
-<h2>Unidad 3: ¿Qué es programar?</h2>
-
-<p>
-Programar es darle instrucciones a una computadora o robot.
-</p>
-
-<pre>
-
-caminar
-caminar
-girar
-caminar
-
-</pre>
-
-<div class="challenge">
-
-<h3>Reto del Robot</h3>
-
-<p>Haz que el robot llegue a la manzana.</p>
-
-<p style="font-size:30px">
-
-🤖 ⬜ ⬜ ⬜  
-⬜ ⬜ ⬜ ⬜  
-🍎 ⬜ ⬜ ⬜  
-
-</p>
-
-<button onclick="completeUnit()">Robot llegó</button>
-
-</div>
-
-</div>
-
-<!-- UNIDAD 4 -->
-
-<div class="card">
-
-<h2>Unidad 4: Programación con Scratch</h2>
-
-<p>
-Con Scratch puedes crear juegos y animaciones usando bloques.
-</p>
-
-<div class="grid">
-
-<div class="box">🎮 Juegos</div>
-<div class="box">🎭 Animaciones</div>
-<div class="box">📖 Historias</div>
-
-</div>
-
-<div class="activity">
-
-<h3>Actividad</h3>
-
-<p>Haz que el personaje diga: "Hola soy un robot".</p>
-
-<button onclick="completeUnit()">Actividad terminada</button>
-
-</div>
-
-</div>
-
-<!-- UNIDAD 5 -->
-
-<div class="card">
-
-<h2>Unidad 5: Robótica</h2>
-
-<p>
-Los robots tienen sensores, motores y una computadora.
-</p>
-
-<div class="grid">
-
-<div class="box">👁 Sensores</div>
-<div class="box">⚙️ Motores</div>
-<div class="box">🧠 Computadora</div>
-
-</div>
-
-<div class="activity">
-
-<h3>Actividad</h3>
-
-<p>Dibuja tu robot y escribe qué puede hacer.</p>
-
-<button onclick="completeUnit()">Robot diseñado</button>
-
-</div>
-
-</div>
-
-<!-- UNIDAD 6 -->
-
-<div class="card">
-
-<h2>Unidad 6: Proyecto Final</h2>
-
-<p>Diseña un robot que ayude en tu escuela.</p>
-
-<div class="grid">
-
-<div class="box">♻️ Robot que recoge basura</div>
-<div class="box">🌱 Robot jardinero</div>
-<div class="box">🧹 Robot limpiador</div>
-
-</div>
-
-<div class="challenge">
-
-<h3>Proyecto</h3>
-
-<p>Dibuja tu robot, ponle nombre y explica cómo funciona.</p>
-
-<button onclick="completeUnit()">Proyecto terminado</button>
-
-</div>
-
-</div>
-
-</div>
-
-<footer>
-
-<p>Programa de Tecnología | Colegio Tlahtoani</p>
-
-</footer>
 
 <script>
 
-let progress=0;
+let robot={x:0,y:0}
+let goal={x:4,y:2}
+let commands=[]
 
-function completeUnit(){
+function drawGrid(){
 
-progress+=16;
+let grid=document.getElementById("grid")
+grid.innerHTML=""
 
-if(progress>100)progress=100;
+for(let y=0;y<3;y++){
 
-document.getElementById("progress").style.width=progress+"%";
+for(let x=0;x<5;x++){
+
+let cell=document.createElement("div")
+cell.className="cell"
+
+if(robot.x==x && robot.y==y){
+
+cell.innerHTML="🤖"
+cell.classList.add("robot")
+
+}
+
+else if(goal.x==x && goal.y==y){
+
+cell.innerHTML="⭐"
+cell.classList.add("goal")
+
+}
+
+grid.appendChild(cell)
+
+}
+
+}
+
+}
+
+drawGrid()
+
+function addCommand(cmd){
+
+commands.push(cmd)
+
+let program=document.getElementById("program")
+
+program.innerHTML+=cmd+" "
+
+}
+
+function runProgram(){
+
+robot={x:0,y:0}
+
+for(let c of commands){
+
+if(c=="up")robot.y--
+
+if(c=="right")robot.x++
+
+if(c=="left")robot.x--
+
+}
+
+drawGrid()
+
+if(robot.x==goal.x && robot.y==goal.y){
+
+document.getElementById("result").innerHTML="🎉 ¡Lo lograste!"
+updateProgress()
+
+}else{
+
+document.getElementById("result").innerHTML="Intenta otra vez"
+
+}
+
+commands=[]
+document.getElementById("program").innerHTML=""
+
+}
+
+function checkLogic(){
+
+let correct=["Abrir pan","Poner jamón","Poner queso","Cerrar pan"]
+
+let answers=[
+
+p1.value,
+p2.value,
+p3.value,
+p4.value
+
+]
+
+let ok=true
+
+for(let i=0;i<4;i++){
+
+if(correct[i]!=answers[i])ok=false
+
+}
+
+if(ok){
+
+logicResult.innerHTML="🎉 Correcto!"
+updateProgress()
+
+}else{
+
+logicResult.innerHTML="Intenta otra vez"
+
+}
+
+}
+
+let progress=0
+
+function updateProgress(){
+
+progress+=50
+
+if(progress>100)progress=100
+
+document.getElementById("progress").style.width=progress+"%"
 
 }
 
 </script>
 
 </body>
-
 </html>
