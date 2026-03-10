@@ -3,46 +3,65 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Unidad 1 - Tecnología | Colegio Tlahtoani</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unidad 1 | Tecnología - Colegio Tlahtoani</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 
+*{
+box-sizing:border-box;
+}
+
 body{
-font-family:Poppins;
 margin:0;
+font-family:Poppins;
 background:linear-gradient(135deg,#4facfe,#00f2fe);
 }
 
 header{
 text-align:center;
 color:white;
-padding:40px;
+padding:30px 15px;
 }
 
 header h1{
-font-size:40px;
 margin:0;
+font-size:clamp(28px,5vw,42px);
+}
+
+header p{
+font-size:clamp(16px,2.5vw,20px);
 }
 
 .container{
-max-width:1000px;
+width:95%;
+max-width:1100px;
 margin:auto;
-padding:25px;
+padding:20px;
 }
 
 .card{
 background:white;
-padding:35px;
 border-radius:20px;
+padding:clamp(20px,4vw,40px);
 box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+h2{
+font-size:clamp(22px,3vw,30px);
+}
+
+p{
+font-size:clamp(16px,2.3vw,18px);
 }
 
 .examples{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
 margin-top:20px;
 }
 
@@ -50,45 +69,52 @@ margin-top:20px;
 background:#eef4ff;
 padding:20px;
 border-radius:12px;
-font-size:20px;
 text-align:center;
+font-size:clamp(18px,2.5vw,20px);
 }
 
 .activity{
 background:#fff7d6;
-padding:25px;
+padding:20px;
 border-radius:15px;
 margin-top:25px;
 }
 
 canvas{
+width:100%;
+height:clamp(250px,40vh,400px);
+background:white;
 border:3px solid #ccc;
 border-radius:10px;
-background:white;
-width:100%;
-max-width:800px;
-height:400px;
 touch-action:none;
-cursor:crosshair;
 }
 
 .tools{
-margin-top:10px;
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin-top:15px;
 }
 
 button{
+flex:1;
+min-width:120px;
+padding:12px;
+font-size:clamp(16px,2.5vw,18px);
+border:none;
+border-radius:10px;
 background:#4CAF50;
 color:white;
-border:none;
-padding:10px 20px;
-border-radius:8px;
-margin:5px;
 cursor:pointer;
-font-size:16px;
 }
 
 button:hover{
 background:#43a047;
+}
+
+.message{
+margin-top:10px;
+font-weight:500;
 }
 
 </style>
@@ -114,7 +140,7 @@ background:#43a047;
 La tecnología son herramientas que usamos para resolver problemas o hacer nuestra vida más fácil.
 </p>
 
-<h3>Ejemplos:</h3>
+<h3>Ejemplos de tecnología</h3>
 
 <div class="examples">
 
@@ -129,18 +155,18 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <h2>🎨 Actividad</h2>
 
-<p>Dibuja 3 tecnologías que uses todos los días.</p>
+<p>Dibuja 3 tecnologías que usas todos los días.</p>
 
 <canvas id="canvas"></canvas>
 
 <div class="tools">
 
 <button onclick="clearCanvas()">🧹 Borrar</button>
-<button onclick="saveDrawing()">💾 Guardar</button>
+<button onclick="saveDrawing()">💾 Guardar dibujo</button>
 
 </div>
 
-<p id="message"></p>
+<p class="message" id="message"></p>
 
 </div>
 
@@ -168,31 +194,23 @@ resizeCanvas();
 window.addEventListener("resize",resizeCanvas);
 
 canvas.addEventListener("pointerdown",(e)=>{
-
 drawing=true;
 draw(e);
-
 });
 
 canvas.addEventListener("pointermove",(e)=>{
-
 if(!drawing)return;
 draw(e);
-
 });
 
 canvas.addEventListener("pointerup",()=>{
-
 drawing=false;
 ctx.beginPath();
-
 });
 
 canvas.addEventListener("pointerleave",()=>{
-
 drawing=false;
 ctx.beginPath();
-
 });
 
 function draw(e){
@@ -223,7 +241,7 @@ function saveDrawing(){
 
 let link=document.createElement("a");
 
-link.download="mi_dibujo_tecnologia.png";
+link.download="dibujo_tecnologia.png";
 link.href=canvas.toDataURL();
 
 link.click();
