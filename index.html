@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Unidad 1 | Tecnología</title>
+<title>Manual Digital - Unidad 1</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -13,121 +13,142 @@
 
 body{
 margin:0;
+background:#e9f2ff;
 font-family:Poppins;
-background:linear-gradient(135deg,#4facfe,#00f2fe);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
 
-header{
-text-align:center;
-color:white;
-padding:25px;
-}
-
-header h1{
-margin:0;
-font-size:34px;
-}
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:20px;
-}
+/* CONTENEDOR DEL LIBRO */
 
 .book{
 
+width:95vw;
+max-width:1100px;
+height:85vh;
+
 background:white;
+
 border-radius:20px;
-padding:30px;
-box-shadow:0 10px 30px rgba(0,0,0,.2);
 
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:30px;
+box-shadow:0 20px 40px rgba(0,0,0,.2);
 
-}
-
-.section h2{
-margin-top:0;
-}
-
-.examples{
-
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px;
-margin-top:20px;
+display:flex;
+flex-direction:column;
 
 }
 
-.example{
+/* HEADER */
 
-background:#eef4ff;
+.header{
+
 padding:20px;
-border-radius:12px;
-font-size:20px;
+background:#4facfe;
+color:white;
 text-align:center;
 
 }
 
-.activity{
+/* CONTENIDO */
 
-background:#fff7d6;
+.content{
+
+flex:1;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+padding:25px;
+
+overflow:auto;
+
+}
+
+/* TARJETAS */
+
+.card{
+
+background:#f7faff;
 padding:20px;
 border-radius:15px;
 
 }
 
+/* EJEMPLOS */
+
+.examples{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-top:10px;
+
+}
+
+.example{
+
+background:white;
+padding:15px;
+border-radius:10px;
+text-align:center;
+font-size:20px;
+
+}
+
+/* ACTIVIDAD */
+
 canvas{
 
 width:100%;
-height:300px;
+height:250px;
 background:white;
-border:3px solid #ccc;
+border:2px solid #ccc;
 border-radius:10px;
 touch-action:none;
 
 }
 
-.tools{
+/* BOTONES */
+
+.buttons{
 
 margin-top:10px;
 display:flex;
 gap:10px;
-flex-wrap:wrap;
 
 }
 
 button{
 
 flex:1;
-padding:12px;
-font-size:16px;
+padding:10px;
 border:none;
 border-radius:10px;
 background:#4CAF50;
 color:white;
+font-size:16px;
 cursor:pointer;
 
 }
 
-button:hover{
+/* NAVEGACIÓN */
 
-background:#43a047;
+.nav{
+
+display:flex;
+justify-content:space-between;
+padding:15px;
+
+background:#f0f0f0;
 
 }
 
-.message{
-
-margin-top:10px;
-
-}
-
-/* Ajuste para celulares */
+/* CELULAR */
 
 @media(max-width:800px){
 
-.book{
+.content{
 
 grid-template-columns:1fr;
 
@@ -141,20 +162,20 @@ grid-template-columns:1fr;
 
 <body>
 
-<header>
+<div class="book">
+
+<div class="header">
 
 <h1>Unidad 1</h1>
 <p>¿Qué es la tecnología?</p>
 
-</header>
+</div>
 
-<div class="container">
+<div class="content">
 
-<div class="book">
+<div class="card">
 
-<div class="section">
-
-<h2>📚 Explicación</h2>
+<h2>Explicación</h2>
 
 <p>
 La tecnología son herramientas que usamos para resolver problemas o hacer nuestra vida más fácil.
@@ -173,24 +194,29 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 </div>
 
-<div class="section activity">
+<div class="card">
 
-<h2>🎨 Actividad</h2>
+<h2>Actividad</h2>
 
-<p>Dibuja 3 tecnologías que uses todos los días.</p>
+<p>Dibuja 3 tecnologías que usas todos los días.</p>
 
 <canvas id="canvas"></canvas>
 
-<div class="tools">
+<div class="buttons">
 
-<button onclick="clearCanvas()">🧹 Borrar</button>
-<button onclick="saveDrawing()">💾 Guardar</button>
+<button onclick="clearCanvas()">Borrar</button>
+<button onclick="saveDrawing()">Guardar</button>
+
+</div>
 
 </div>
 
-<p class="message" id="message"></p>
-
 </div>
+
+<div class="nav">
+
+<button>⬅ Unidad anterior</button>
+<button>Siguiente unidad ➡</button>
 
 </div>
 
@@ -230,11 +256,6 @@ drawing=false
 ctx.beginPath()
 })
 
-canvas.addEventListener("pointerleave",()=>{
-drawing=false
-ctx.beginPath()
-})
-
 function draw(e){
 
 const rect=canvas.getBoundingClientRect()
@@ -244,10 +265,10 @@ const y=e.clientY-rect.top
 
 ctx.lineWidth=5
 ctx.lineCap="round"
-ctx.strokeStyle="#000"
 
 ctx.lineTo(x,y)
 ctx.stroke()
+
 ctx.beginPath()
 ctx.moveTo(x,y)
 
@@ -263,12 +284,10 @@ function saveDrawing(){
 
 let link=document.createElement("a")
 
-link.download="tecnologia.png"
+link.download="dibujo.png"
 link.href=canvas.toDataURL()
 
 link.click()
-
-message.innerHTML="✅ ¡Dibujo guardado!"
 
 }
 
