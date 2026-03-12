@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Manual Digital | Unidad 1</title>
+<title>Manual Digital de Robótica</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -52,11 +52,6 @@ text-align:center;
 .header h1{
 margin:0;
 font-size:clamp(30px,4vw,42px);
-}
-
-.header p{
-margin-top:5px;
-font-size:clamp(18px,2vw,24px);
 }
 
 /* CONTENIDO */
@@ -120,11 +115,10 @@ height:420px;
 background:white;
 border:3px dashed #cfcfcf;
 border-radius:12px;
-touch-action:auto;
 
 }
 
-/* BOTONES HERRAMIENTAS */
+/* BOTONES */
 
 .buttons{
 
@@ -152,7 +146,7 @@ transition:.25s;
 button:hover{
 
 transform:translateY(-3px);
-box-shadow:0 8px 15px rgba(0,0,0,.2);
+box-shadow:0 8px 20px rgba(0,0,0,.25);
 
 }
 
@@ -160,13 +154,34 @@ button.active{
 background:#ff9800;
 }
 
-/* NAVEGACIÓN MEJORADA */
+/* DRAG AREA */
+
+.drag-area{
+
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:20px;
+
+}
+
+.step{
+
+background:white;
+padding:16px;
+border-radius:10px;
+font-size:20px;
+cursor:grab;
+box-shadow:0 4px 10px rgba(0,0,0,.15);
+
+}
+
+/* NAVEGACIÓN */
 
 .nav{
 
 display:flex;
 justify-content:space-between;
-align-items:center;
 padding:25px;
 background:#f2f5ff;
 
@@ -174,58 +189,28 @@ background:#f2f5ff;
 
 .nav button{
 
-flex:1;
 max-width:260px;
-padding:16px;
-font-size:18px;
-border-radius:12px;
 background:linear-gradient(135deg,#4facfe,#00c6ff);
-color:white;
-border:none;
-cursor:pointer;
-transition:.25s;
-font-weight:500;
 
 }
 
-.nav button:hover{
+/* OCULTAR UNIDADES */
 
-transform:translateY(-3px);
-box-shadow:0 10px 20px rgba(0,0,0,.25);
-
+.unit{
+display:none;
 }
 
-/* COMPUTADORAS GRANDES */
-
-@media(min-width:1200px){
-
-canvas{
-height:520px;
+.unit.active{
+display:block;
 }
 
-}
-
-/* TABLETS */
-
-@media(max-width:900px){
-
-canvas{
-height:360px;
-}
-
-}
-
-/* CELULARES */
+/* RESPONSIVE */
 
 @media(max-width:700px){
 
 .book{
 width:100%;
 border-radius:0;
-}
-
-canvas{
-height:300px;
 }
 
 .nav{
@@ -249,23 +234,22 @@ width:100%;
 <div class="book">
 
 <div class="header">
-
-<h1>Unidad 1</h1>
-<p>¿Qué es la tecnología?</p>
-
+<h1>Manual Digital de Robótica</h1>
 </div>
 
 <div class="content">
 
+<!-- UNIDAD 1 -->
+
+<div class="unit active" id="unidad1">
+
 <div class="card">
 
-<h2>📚 Explicación</h2>
+<h2>Unidad 1: ¿Qué es la tecnología?</h2>
 
 <p>
 La tecnología son herramientas que usamos para resolver problemas o hacer nuestra vida más fácil.
 </p>
-
-<h2>Ejemplos</h2>
 
 <div class="examples">
 
@@ -280,7 +264,7 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <div class="card">
 
-<h2>🎨 Actividad</h2>
+<h2>Actividad</h2>
 
 <p>Dibuja 3 tecnologías que usas todos los días.</p>
 
@@ -288,17 +272,64 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <div class="buttons">
 
-<button id="penBtn" onclick="setTool('pen')">✏️ Lápiz</button>
-
-<button id="eraserBtn" onclick="setTool('eraser')">🧽 Borrador</button>
-
+<button onclick="setTool('pen')">✏️ Lápiz</button>
+<button onclick="setTool('eraser')">🧽 Borrador</button>
 <button onclick="saveDrawing()">💾 Guardar</button>
-
 <button onclick="enableEdit()">✏️ Editar</button>
 
 </div>
 
-<p id="message"></p>
+</div>
+
+</div>
+
+<!-- UNIDAD 2 -->
+
+<div class="unit" id="unidad2">
+
+<div class="card">
+
+<h2>Unidad 2: Pensamiento lógico</h2>
+
+<p>
+Antes de programar debemos aprender a pensar paso a paso.
+</p>
+
+<p><b>Ejemplo:</b> Lavarse los dientes</p>
+
+<p>
+1️⃣ Tomar el cepillo<br>
+2️⃣ Poner pasta<br>
+3️⃣ Cepillar dientes<br>
+4️⃣ Enjuagar
+</p>
+
+<p>
+Eso se llama <b>algoritmo</b>.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Actividad</h2>
+
+<p>Ordena los pasos para hacer un sándwich 🥪</p>
+
+<div class="drag-area" id="steps">
+
+<div class="step" draggable="true">poner jamón</div>
+<div class="step" draggable="true">abrir pan</div>
+<div class="step" draggable="true">cerrar pan</div>
+<div class="step" draggable="true">poner queso</div>
+
+</div>
+
+<button onclick="checkOrder()">Verificar</button>
+
+<p id="result"></p>
+
+</div>
 
 </div>
 
@@ -306,9 +337,9 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <div class="nav">
 
-<button>⬅ Unidad anterior</button>
+<button onclick="prevUnit()">⬅ Unidad anterior</button>
 
-<button>Siguiente unidad ➡</button>
+<button onclick="nextUnit()">Unidad siguiente ➡</button>
 
 </div>
 
@@ -316,100 +347,94 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <script>
 
+/* NAVEGACIÓN */
+
+let current = 0
+const units = document.querySelectorAll(".unit")
+
+function showUnit(i){
+
+units.forEach(u=>u.classList.remove("active"))
+units[i].classList.add("active")
+
+}
+
+function nextUnit(){
+
+if(current < units.length-1){
+current++
+showUnit(current)
+}
+
+}
+
+function prevUnit(){
+
+if(current > 0){
+current--
+showUnit(current)
+}
+
+}
+
+/* DIBUJO */
+
 const canvas = document.getElementById("canvas")
 const ctx = canvas.getContext("2d")
 
-let drawing = false
-let tool = null
-let locked = false
+let drawing=false
+let tool=null
+let locked=false
 
-const penBtn = document.getElementById("penBtn")
-const eraserBtn = document.getElementById("eraserBtn")
-const message = document.getElementById("message")
+canvas.width=canvas.offsetWidth
+canvas.height=canvas.offsetHeight
 
-function resizeCanvas(){
+canvas.addEventListener("pointerdown",e=>{
 
-const rect = canvas.getBoundingClientRect()
+if(tool==null||locked)return
 
-const saved = localStorage.getItem("unidad1_dibujo")
-
-canvas.width = rect.width
-canvas.height = rect.height
-
-if(saved){
-
-const img = new Image()
-img.src = saved
-
-img.onload = () => {
-
-ctx.drawImage(img,0,0,canvas.width,canvas.height)
-locked = true
-
-}
-
-}
-
-}
-
-resizeCanvas()
-
-window.addEventListener("resize",resizeCanvas)
-
-canvas.addEventListener("pointerdown", e => {
-
-if(locked || tool === null) return
-
-drawing = true
+drawing=true
 draw(e)
 
 })
 
-canvas.addEventListener("pointermove", e => {
+canvas.addEventListener("pointermove",e=>{
 
-if(!drawing || locked || tool === null) return
-
+if(!drawing||locked)return
 draw(e)
 
 })
 
-canvas.addEventListener("pointerup", () => {
+canvas.addEventListener("pointerup",()=>{
 
-drawing = false
-ctx.beginPath()
-
-})
-
-canvas.addEventListener("pointerleave", () => {
-
-drawing = false
+drawing=false
 ctx.beginPath()
 
 })
 
 function draw(e){
 
-const rect = canvas.getBoundingClientRect()
+const rect=canvas.getBoundingClientRect()
 
-const x = e.clientX - rect.left
-const y = e.clientY - rect.top
+const x=e.clientX-rect.left
+const y=e.clientY-rect.top
 
-if(tool === "pen"){
+if(tool==="pen"){
 
-ctx.globalCompositeOperation = "source-over"
-ctx.strokeStyle = "#000"
-ctx.lineWidth = 5
-
-}
-
-if(tool === "eraser"){
-
-ctx.globalCompositeOperation = "destination-out"
-ctx.lineWidth = 25
+ctx.globalCompositeOperation="source-over"
+ctx.strokeStyle="#000"
+ctx.lineWidth=5
 
 }
 
-ctx.lineCap = "round"
+if(tool==="eraser"){
+
+ctx.globalCompositeOperation="destination-out"
+ctx.lineWidth=25
+
+}
+
+ctx.lineCap="round"
 
 ctx.lineTo(x,y)
 ctx.stroke()
@@ -421,48 +446,76 @@ ctx.moveTo(x,y)
 
 function setTool(t){
 
-if(locked){
-
-message.innerHTML = "🔒 Presiona 'Editar' para modificar el dibujo"
-return
-
-}
-
-tool = t
-
-penBtn.classList.remove("active")
-eraserBtn.classList.remove("active")
-
-if(t === "pen") penBtn.classList.add("active")
-if(t === "eraser") eraserBtn.classList.add("active")
-
-canvas.style.touchAction = "none"
+if(locked)return
+tool=t
 
 }
 
 function saveDrawing(){
 
-localStorage.setItem("unidad1_dibujo", canvas.toDataURL())
-
-locked = true
-
-canvas.style.touchAction = "auto"
-
-message.innerHTML = "✅ Dibujo guardado"
+locked=true
 
 }
 
 function enableEdit(){
 
-locked = false
-tool = null
+locked=false
 
-penBtn.classList.remove("active")
-eraserBtn.classList.remove("active")
+}
 
-canvas.style.touchAction = "auto"
+/* DRAG */
 
-message.innerHTML = "✏️ Selecciona una herramienta"
+let dragged
+
+document.querySelectorAll(".step").forEach(step=>{
+
+step.addEventListener("dragstart",()=>dragged=step)
+
+step.addEventListener("dragover",e=>e.preventDefault())
+
+step.addEventListener("drop",e=>{
+
+e.preventDefault()
+
+if(dragged!==step){
+
+let all=[...steps.children]
+
+let draggedIndex=all.indexOf(dragged)
+let dropIndex=all.indexOf(step)
+
+if(draggedIndex<dropIndex){
+steps.insertBefore(dragged,step.nextSibling)
+}else{
+steps.insertBefore(dragged,step)
+}
+
+}
+
+})
+
+})
+
+function checkOrder(){
+
+let order=[...document.querySelectorAll(".step")].map(e=>e.innerText)
+
+let correct=[
+"abrir pan",
+"poner jamón",
+"poner queso",
+"cerrar pan"
+]
+
+if(JSON.stringify(order)===JSON.stringify(correct)){
+
+result.innerHTML="🎉 ¡Correcto!"
+
+}else{
+
+result.innerHTML="❌ Intenta otra vez"
+
+}
 
 }
 
