@@ -22,8 +22,7 @@ body{
 
 font-family:Poppins;
 
-background:
-radial-gradient(circle at top,#0f2027,#203a43,#2c5364);
+background:radial-gradient(circle at top,#0f2027,#203a43,#2c5364);
 
 min-height:100vh;
 
@@ -36,57 +35,26 @@ color:white;
 
 }
 
-body::before{
-
-content:"";
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-background-image:
-
-linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-
-background-size:40px 40px;
-
-pointer-events:none;
-
-}
-
 .book{
 
 width:95vw;
-max-width:1600px;
+max-width:1500px;
 
 background:rgba(10,15,35,.9);
 
-border-radius:22px;
-
-backdrop-filter:blur(10px);
-
-border:1px solid rgba(255,255,255,.08);
-
-box-shadow:
-
-0 0 40px rgba(0,255,255,.25),
-0 0 80px rgba(0,255,255,.1);
+border-radius:20px;
 
 overflow:hidden;
+
+box-shadow:0 0 40px rgba(0,255,255,.2);
 
 }
 
 .header{
 
-background:
-linear-gradient(135deg,#00c6ff,#0072ff);
+background:linear-gradient(135deg,#00c6ff,#0072ff);
 
-padding:45px;
+padding:40px;
 
 text-align:center;
 
@@ -95,20 +63,8 @@ text-align:center;
 .logo{
 
 width:120px;
-margin-bottom:15px;
 
-}
-
-.header h1{
-
-font-size:clamp(36px,4vw,52px);
-
-}
-
-.header p{
-
-margin-top:10px;
-font-size:18px;
+margin-bottom:10px;
 
 }
 
@@ -117,30 +73,20 @@ font-size:18px;
 padding:40px;
 
 display:flex;
+
 flex-direction:column;
 
-gap:35px;
+gap:30px;
 
 }
 
 .card{
 
-background:rgba(20,28,60,.85);
+background:#11193d;
 
-border-radius:18px;
+padding:30px;
 
-padding:35px;
-
-border:1px solid rgba(255,255,255,.06);
-
-box-shadow:0 10px 30px rgba(0,0,0,.5);
-
-}
-
-.card h2{
-
-color:#7fe7ff;
-margin-bottom:15px;
+border-radius:16px;
 
 }
 
@@ -148,9 +94,9 @@ margin-bottom:15px;
 
 display:grid;
 
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
 
-gap:20px;
+gap:15px;
 
 margin-top:20px;
 
@@ -162,46 +108,36 @@ background:#0e1630;
 
 padding:20px;
 
-border-radius:12px;
-
 text-align:center;
 
-font-size:26px;
+font-size:30px;
 
-border:1px solid rgba(0,255,255,.2);
-
-transition:.25s;
-
-}
-
-.example:hover{
-
-transform:translateY(-6px);
-
-box-shadow:0 0 20px rgba(0,255,255,.35);
+border-radius:12px;
 
 }
 
 canvas{
 
 width:100%;
+
 height:420px;
 
 background:#0b1126;
 
 border:2px dashed #3ad6ff;
 
-border-radius:12px;
-
-touch-action:auto;
+border-radius:10px;
 
 }
 
 .buttons{
 
 display:flex;
+
 gap:10px;
+
 flex-wrap:wrap;
+
 margin-top:20px;
 
 }
@@ -212,15 +148,13 @@ padding:12px 18px;
 
 border:none;
 
-border-radius:12px;
-
-cursor:pointer;
+border-radius:10px;
 
 background:linear-gradient(135deg,#00c6ff,#0072ff);
 
 color:white;
 
-box-shadow:0 0 15px rgba(0,198,255,.6);
+cursor:pointer;
 
 }
 
@@ -228,11 +162,11 @@ box-shadow:0 0 15px rgba(0,198,255,.6);
 
 display:grid;
 
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 
 gap:20px;
 
-margin-top:25px;
+margin-top:20px;
 
 }
 
@@ -240,7 +174,7 @@ margin-top:25px;
 
 background:#0e1630;
 
-padding:25px;
+padding:20px;
 
 border-radius:14px;
 
@@ -248,75 +182,29 @@ text-align:center;
 
 cursor:pointer;
 
-border:1px solid rgba(0,255,255,.2);
-
-transition:.25s;
-
-}
-
-.menu-item:hover{
-
-transform:translateY(-6px);
-
-box-shadow:0 0 20px rgba(0,255,255,.35);
-
 }
 
 .unit{
+
 display:none;
+
 }
 
 .unit.active{
+
 display:block;
+
 }
 
 .nav{
 
 display:flex;
+
 justify-content:space-between;
 
-padding:25px;
+padding:20px;
 
 background:#0c1430;
-
-}
-
-.sandwich{
-
-min-height:200px;
-
-display:flex;
-
-flex-direction:column-reverse;
-
-align-items:center;
-
-gap:6px;
-
-}
-
-.ingredients{
-
-display:flex;
-gap:15px;
-flex-wrap:wrap;
-justify-content:center;
-
-margin-top:20px;
-
-}
-
-.ingredient{
-
-font-size:40px;
-
-background:#0e1630;
-
-padding:10px 20px;
-
-border-radius:12px;
-
-cursor:pointer;
 
 }
 
@@ -348,9 +236,7 @@ cursor:pointer;
 
 <h2>Bienvenido</h2>
 
-<p>
-Este eBook interactivo te permitirá aprender robótica y programación realizando actividades dentro del mismo libro.
-</p>
+<p>Aprende robótica y programación con actividades interactivas.</p>
 
 <div class="menu-grid">
 
@@ -403,9 +289,10 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <div class="buttons">
 
-<button onclick="setTool('pen')">✏️ Lápiz</button>
-<button onclick="setTool('eraser')">🧽 Borrador</button>
-<button onclick="clearCanvas()">🗑️ Limpiar</button>
+<button onclick="startDrawing()">✏️ Lápiz</button>
+<button onclick="setEraser()">🧽 Borrador</button>
+<button onclick="saveDrawing()">💾 Guardar</button>
+<button onclick="editDrawing()">✏️ Editar</button>
 
 </div>
 
@@ -436,28 +323,6 @@ Antes de programar debemos aprender a pensar paso a paso.
 
 </div>
 
-<div class="card">
-
-<h2>Actividad: Construye el sándwich 🥪</h2>
-
-<div class="sandwich" id="sandwich"></div>
-
-<div class="ingredients">
-
-<div class="ingredient" onclick="addIngredient('pan')">🥖</div>
-<div class="ingredient" onclick="addIngredient('jamon')">🍖</div>
-<div class="ingredient" onclick="addIngredient('queso')">🧀</div>
-<div class="ingredient" onclick="addIngredient('panTop')">🥖</div>
-
-</div>
-
-<button onclick="checkSandwich()">Verificar</button>
-<button onclick="resetSandwich()">Intentar otra vez</button>
-
-<p id="result"></p>
-
-</div>
-
 </div>
 
 </div>
@@ -473,8 +338,6 @@ Antes de programar debemos aprender a pensar paso a paso.
 
 <script>
 
-/* NAVEGACIÓN */
-
 function showUnit(id){
 
 document.querySelectorAll(".unit").forEach(u=>u.classList.remove("active"))
@@ -483,56 +346,37 @@ document.getElementById(id).classList.add("active")
 
 const nav=document.getElementById("nav")
 
-if(id==="menu"){
-nav.style.display="none"
-}else{
-nav.style.display="flex"
-}
+nav.style.display=id==="menu"?"none":"flex"
 
 }
 
-function goMenu(){
-showUnit("menu")
-}
-
-function goUnit(n){
-showUnit("unidad"+n)
-}
+function goMenu(){showUnit("menu")}
+function goUnit(n){showUnit("unidad"+n)}
 
 function nextUnit(){
 
-if(document.getElementById("unidad1").classList.contains("active")){
+if(document.getElementById("unidad1").classList.contains("active"))
 showUnit("unidad2")
-}
 
 }
 
 /* CANVAS */
 
 const canvas=document.getElementById("canvas")
-
 const ctx=canvas.getContext("2d")
-
-let drawing=false
-let tool=null
-
-function resizeCanvas(){
 
 canvas.width=canvas.offsetWidth
 canvas.height=canvas.offsetHeight
 
-}
-
-resizeCanvas()
-
-window.addEventListener("resize",resizeCanvas)
+let drawing=false
+let tool=null
+let locked=true
 
 canvas.addEventListener("pointerdown",e=>{
 
-if(!tool) return
+if(locked || !tool) return
 
 drawing=true
-
 draw(e)
 
 })
@@ -548,7 +392,6 @@ draw(e)
 canvas.addEventListener("pointerup",()=>{
 
 drawing=false
-
 ctx.beginPath()
 
 })
@@ -565,9 +408,7 @@ ctx.lineCap="round"
 if(tool==="pen"){
 
 ctx.globalCompositeOperation="source-over"
-
 ctx.strokeStyle="#ffffff"
-
 ctx.lineWidth=5
 
 }
@@ -575,80 +416,41 @@ ctx.lineWidth=5
 if(tool==="eraser"){
 
 ctx.globalCompositeOperation="destination-out"
-
 ctx.lineWidth=25
 
 }
 
 ctx.lineTo(x,y)
-
 ctx.stroke()
-
 ctx.beginPath()
-
 ctx.moveTo(x,y)
 
 }
 
-function setTool(t){
-tool=t
-}
+function startDrawing(){
 
-function clearCanvas(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
+locked=false
+tool="pen"
 
 }
 
-/* SÁNDWICH */
+function setEraser(){
 
-let sandwichOrder=[]
-
-function addIngredient(type){
-
-const sandwich=document.getElementById("sandwich")
-
-let emoji=""
-
-if(type==="pan") emoji="🥖"
-if(type==="jamon") emoji="🍖"
-if(type==="queso") emoji="🧀"
-if(type==="panTop") emoji="🥖"
-
-const layer=document.createElement("div")
-
-layer.innerText=emoji
-
-sandwich.appendChild(layer)
-
-sandwichOrder.push(type)
+tool="eraser"
 
 }
 
-function checkSandwich(){
+function saveDrawing(){
 
-const correct=["pan","jamon","queso","panTop"]
-
-const result=document.getElementById("result")
-
-if(JSON.stringify(sandwichOrder)===JSON.stringify(correct)){
-
-result.innerHTML="¡Correcto!"
-
-}else{
-
-result.innerHTML="Intenta otra vez"
+locked=true
+tool=null
 
 }
 
-}
+function editDrawing(){
 
-function resetSandwich(){
-
-sandwichOrder=[]
-
-document.getElementById("sandwich").innerHTML=""
-document.getElementById("result").innerHTML=""
+locked=false
+tool="pen"
 
 }
 
