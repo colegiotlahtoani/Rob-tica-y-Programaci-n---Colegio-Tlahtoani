@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RoboCode eBook</title>
+<title>RoboCode eBook - Colegio Tlahtoani</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -44,6 +44,11 @@ padding:40px;
 text-align:center;
 }
 
+.logo{
+width:120px;
+margin-bottom:15px;
+}
+
 .header h1{
 font-size:clamp(32px,4vw,46px);
 font-weight:700;
@@ -51,7 +56,8 @@ font-weight:700;
 
 .header p{
 margin-top:10px;
-opacity:.9;
+font-size:18px;
+opacity:.95;
 }
 
 .content{
@@ -124,6 +130,28 @@ button:hover{
 transform:translateY(-2px);
 }
 
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-top:20px;
+}
+
+.menu-item{
+background:#0e1630;
+padding:25px;
+border-radius:14px;
+text-align:center;
+cursor:pointer;
+transition:.25s;
+border:1px solid rgba(255,255,255,.1);
+}
+
+.menu-item:hover{
+transform:translateY(-5px);
+box-shadow:0 0 20px rgba(0,255,255,.3);
+}
+
 .unit{
 display:none;
 }
@@ -193,16 +221,56 @@ gap:10px;
 
 <div class="header">
 
-<h1>🤖 RoboCode eBook</h1>
-<p>Aprende Robótica y Programación Jugando</p>
+<img src="logo.png" class="logo">
+
+<h1>RoboCode eBook</h1>
+
+<p>
+Aprende robótica y programación de una forma innovadora y desarrolla las habilidades tecnológicas del siglo XXI
+</p>
 
 </div>
 
 <div class="content">
 
+<!-- PORTADA / MENÚ -->
+
+<div class="unit active" id="menu">
+
+<div class="card">
+
+<h2>Bienvenido al RoboCode eBook</h2>
+
+<p>
+Este eBook interactivo fue creado para que los alumnos aprendan robótica, tecnología y programación de manera divertida.
+Aquí podrás realizar actividades directamente en el libro, resolver retos y desarrollar pensamiento lógico como un verdadero programador.
+</p>
+
+<p>
+Selecciona una unidad para comenzar:
+</p>
+
+<div class="menu-grid">
+
+<div class="menu-item" onclick="goUnit(1)">
+📱 Unidad 1<br>
+¿Qué es la tecnología?
+</div>
+
+<div class="menu-item" onclick="goUnit(2)">
+🧠 Unidad 2<br>
+Pensamiento lógico
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 <!-- UNIDAD 1 -->
 
-<div class="unit active" id="unidad1">
+<div class="unit" id="unidad1">
 
 <div class="card">
 
@@ -301,7 +369,8 @@ Antes de programar debemos aprender a pensar paso a paso.
 
 <div class="nav">
 
-<button onclick="prevUnit()">⬅ Unidad anterior</button>
+<button onclick="goMenu()">🏠 Menú</button>
+
 <button onclick="nextUnit()">Unidad siguiente ➡</button>
 
 </div>
@@ -310,32 +379,32 @@ Antes de programar debemos aprender a pensar paso a paso.
 
 <script>
 
-/* UNIDADES */
+/* NAVEGACIÓN */
 
-let current=0
 const units=document.querySelectorAll(".unit")
 
-function showUnit(i){
+function showUnit(id){
 
 units.forEach(u=>u.classList.remove("active"))
-units[i].classList.add("active")
+
+document.getElementById(id).classList.add("active")
+
+}
+
+function goMenu(){
+showUnit("menu")
+}
+
+function goUnit(n){
+
+showUnit("unidad"+n)
 
 }
 
 function nextUnit(){
 
-if(current<units.length-1){
-current++
-showUnit(current)
-}
-
-}
-
-function prevUnit(){
-
-if(current>0){
-current--
-showUnit(current)
+if(document.getElementById("unidad1").classList.contains("active")){
+showUnit("unidad2")
 }
 
 }
@@ -399,13 +468,11 @@ function setTool(t){
 tool=t
 }
 
-function saveDrawing(){
-}
+function saveDrawing(){}
 
-function enableEdit(){
-}
+function enableEdit(){}
 
-/* JUEGO SÁNDWICH */
+/* SÁNDWICH */
 
 let sandwichOrder=[]
 
