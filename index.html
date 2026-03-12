@@ -28,25 +28,21 @@ padding:20px;
 /* LIBRO */
 
 .book{
-
 width:95vw;
 max-width:1500px;
 background:white;
 border-radius:20px;
 box-shadow:0 25px 60px rgba(0,0,0,.25);
 overflow:hidden;
-
 }
 
 /* HEADER */
 
 .header{
-
 background:#4facfe;
 color:white;
 padding:35px;
 text-align:center;
-
 }
 
 .header h1{
@@ -57,21 +53,17 @@ font-size:clamp(30px,4vw,42px);
 /* CONTENIDO */
 
 .content{
-
 display:flex;
 flex-direction:column;
 gap:30px;
 padding:35px;
-
 }
 
 .card{
-
 background:#f7f9ff;
 border-radius:16px;
 padding:30px;
 box-shadow:0 8px 20px rgba(0,0,0,.08);
-
 }
 
 h2{
@@ -87,50 +79,41 @@ line-height:1.6;
 /* EJEMPLOS */
 
 .examples{
-
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
 gap:18px;
 margin-top:15px;
-
 }
 
 .example{
-
 background:white;
 padding:20px;
 border-radius:12px;
 text-align:center;
 font-size:24px;
 box-shadow:0 5px 12px rgba(0,0,0,.08);
-
 }
 
 /* CANVAS */
 
 canvas{
-
 width:100%;
 height:420px;
 background:white;
 border:3px dashed #cfcfcf;
 border-radius:12px;
-
 }
 
 /* BOTONES */
 
 .buttons{
-
 margin-top:20px;
 display:flex;
 gap:12px;
 flex-wrap:wrap;
-
 }
 
 button{
-
 flex:1;
 padding:14px;
 font-size:18px;
@@ -140,61 +123,71 @@ background:#4CAF50;
 color:white;
 cursor:pointer;
 transition:.25s;
-
 }
 
 button:hover{
-
 transform:translateY(-3px);
 box-shadow:0 8px 20px rgba(0,0,0,.25);
-
 }
 
-button.active{
-background:#ff9800;
-}
+/* SANDWICH GAME */
 
-/* DRAG AREA */
-
-.drag-area{
-
+.sandwich-area{
 display:flex;
 flex-direction:column;
-gap:12px;
-margin-top:20px;
-
+align-items:center;
+gap:20px;
 }
 
-.step{
+.sandwich{
+min-height:180px;
+width:200px;
+display:flex;
+flex-direction:column-reverse;
+align-items:center;
+gap:6px;
+}
 
+.layer{
+font-size:40px;
+}
+
+.ingredients{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.ingredient{
+font-size:35px;
 background:white;
-padding:16px;
+padding:10px 18px;
 border-radius:10px;
-font-size:20px;
-cursor:grab;
+cursor:pointer;
 box-shadow:0 4px 10px rgba(0,0,0,.15);
+transition:.2s;
+}
 
+.ingredient:hover{
+transform:scale(1.1);
 }
 
 /* NAVEGACIÓN */
 
 .nav{
-
 display:flex;
 justify-content:space-between;
 padding:25px;
 background:#f2f5ff;
-
 }
 
 .nav button{
-
 max-width:260px;
 background:linear-gradient(135deg,#4facfe,#00c6ff);
-
 }
 
-/* OCULTAR UNIDADES */
+/* UNIDADES */
 
 .unit{
 display:none;
@@ -295,7 +288,7 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 Antes de programar debemos aprender a pensar paso a paso.
 </p>
 
-<p><b>Ejemplo:</b> Lavarse los dientes</p>
+<p><b>Ejemplo: Lavarse los dientes</b></p>
 
 <p>
 1️⃣ Tomar el cepillo<br>
@@ -304,30 +297,32 @@ Antes de programar debemos aprender a pensar paso a paso.
 4️⃣ Enjuagar
 </p>
 
-<p>
-Eso se llama <b>algoritmo</b>.
-</p>
+<p>Eso se llama <b>algoritmo</b>.</p>
 
 </div>
 
 <div class="card">
 
-<h2>Actividad</h2>
+<h2>Actividad: Construye el sándwich 🥪</h2>
 
-<p>Ordena los pasos para hacer un sándwich 🥪</p>
+<div class="sandwich-area">
 
-<div class="drag-area" id="steps">
+<div class="sandwich" id="sandwich"></div>
 
-<div class="step" draggable="true">poner jamón</div>
-<div class="step" draggable="true">abrir pan</div>
-<div class="step" draggable="true">cerrar pan</div>
-<div class="step" draggable="true">poner queso</div>
+<div class="ingredients">
+
+<div class="ingredient" onclick="addIngredient('pan')">🥖</div>
+<div class="ingredient" onclick="addIngredient('jamon')">🍖</div>
+<div class="ingredient" onclick="addIngredient('queso')">🧀</div>
+<div class="ingredient" onclick="addIngredient('panTop')">🥖</div>
 
 </div>
 
-<button onclick="checkOrder()">Verificar</button>
+<button onclick="checkSandwich()">Verificar</button>
 
 <p id="result"></p>
+
+</div>
 
 </div>
 
@@ -347,69 +342,55 @@ Eso se llama <b>algoritmo</b>.
 
 <script>
 
-/* NAVEGACIÓN */
+/* UNIDADES */
 
-let current = 0
-const units = document.querySelectorAll(".unit")
+let current=0
+const units=document.querySelectorAll(".unit")
 
 function showUnit(i){
-
 units.forEach(u=>u.classList.remove("active"))
 units[i].classList.add("active")
-
 }
 
 function nextUnit(){
-
-if(current < units.length-1){
+if(current<units.length-1){
 current++
 showUnit(current)
 }
-
 }
 
 function prevUnit(){
-
-if(current > 0){
+if(current>0){
 current--
 showUnit(current)
 }
-
 }
 
 /* DIBUJO */
 
-const canvas = document.getElementById("canvas")
-const ctx = canvas.getContext("2d")
+const canvas=document.getElementById("canvas")
+const ctx=canvas.getContext("2d")
 
 let drawing=false
 let tool=null
-let locked=false
 
 canvas.width=canvas.offsetWidth
 canvas.height=canvas.offsetHeight
 
 canvas.addEventListener("pointerdown",e=>{
-
-if(tool==null||locked)return
-
+if(tool==null)return
 drawing=true
 draw(e)
-
 })
 
 canvas.addEventListener("pointermove",e=>{
-
-if(!drawing||locked)return
+if(!drawing)return
 draw(e)
-
 })
 
 canvas.addEventListener("pointerup",()=>{
-
 drawing=false
 ctx.beginPath()
-
 })
 
 function draw(e){
@@ -420,18 +401,14 @@ const x=e.clientX-rect.left
 const y=e.clientY-rect.top
 
 if(tool==="pen"){
-
 ctx.globalCompositeOperation="source-over"
 ctx.strokeStyle="#000"
 ctx.lineWidth=5
-
 }
 
 if(tool==="eraser"){
-
 ctx.globalCompositeOperation="destination-out"
 ctx.lineWidth=25
-
 }
 
 ctx.lineCap="round"
@@ -445,75 +422,51 @@ ctx.moveTo(x,y)
 }
 
 function setTool(t){
-
-if(locked)return
 tool=t
-
 }
 
 function saveDrawing(){
-
-locked=true
-
 }
 
 function enableEdit(){
+}
 
-locked=false
+/* SANDWICH GAME */
+
+let sandwichOrder=[]
+
+function addIngredient(type){
+
+const sandwich=document.getElementById("sandwich")
+
+let emoji=""
+
+if(type==="pan") emoji="🥖"
+if(type==="jamon") emoji="🍖"
+if(type==="queso") emoji="🧀"
+if(type==="panTop") emoji="🥖"
+
+const layer=document.createElement("div")
+layer.className="layer"
+layer.innerText=emoji
+
+sandwich.appendChild(layer)
+
+sandwichOrder.push(type)
 
 }
 
-/* DRAG */
+function checkSandwich(){
 
-let dragged
+const correct=["pan","jamon","queso","panTop"]
 
-document.querySelectorAll(".step").forEach(step=>{
+if(JSON.stringify(sandwichOrder)===JSON.stringify(correct)){
 
-step.addEventListener("dragstart",()=>dragged=step)
-
-step.addEventListener("dragover",e=>e.preventDefault())
-
-step.addEventListener("drop",e=>{
-
-e.preventDefault()
-
-if(dragged!==step){
-
-let all=[...steps.children]
-
-let draggedIndex=all.indexOf(dragged)
-let dropIndex=all.indexOf(step)
-
-if(draggedIndex<dropIndex){
-steps.insertBefore(dragged,step.nextSibling)
-}else{
-steps.insertBefore(dragged,step)
-}
-
-}
-
-})
-
-})
-
-function checkOrder(){
-
-let order=[...document.querySelectorAll(".step")].map(e=>e.innerText)
-
-let correct=[
-"abrir pan",
-"poner jamón",
-"poner queso",
-"cerrar pan"
-]
-
-if(JSON.stringify(order)===JSON.stringify(correct)){
-
-result.innerHTML="🎉 ¡Correcto!"
+result.innerHTML="🎉 ¡Perfecto! Pensaste como un programador."
 
 }else{
 
-result.innerHTML="❌ Intenta otra vez"
+result.innerHTML="❌ Intenta otra vez."
 
 }
 
