@@ -19,194 +19,417 @@ padding:0;
 }
 
 body{
+
 font-family:Poppins;
-background:radial-gradient(circle at top,#0f2027,#203a43,#2c5364);
+
+background:
+radial-gradient(circle at top,#0f2027,#203a43,#2c5364);
+
 min-height:100vh;
+
 display:flex;
 justify-content:center;
+
 padding:30px;
+
 color:white;
+
 }
+
+/* GRID TECNOLÓGICO */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background-image:
+
+linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+
+background-size:40px 40px;
+
+pointer-events:none;
+
+}
+
+/* CONTENEDOR */
 
 .book{
+
 width:95vw;
 max-width:1600px;
-background:rgba(15,20,40,0.9);
-border-radius:20px;
-border:1px solid rgba(255,255,255,0.1);
-box-shadow:0 0 40px rgba(0,255,255,.2);
+
+background:rgba(10,15,35,.85);
+
+border-radius:22px;
+
+backdrop-filter:blur(10px);
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+
+0 0 40px rgba(0,255,255,.25),
+0 0 80px rgba(0,255,255,.1);
+
 overflow:hidden;
+
 }
 
+/* HEADER */
+
 .header{
-background:linear-gradient(135deg,#00c6ff,#0072ff);
-padding:40px;
+
+background:
+
+linear-gradient(135deg,#00c6ff,#0072ff);
+
+padding:45px;
+
 text-align:center;
+
 }
 
 .logo{
+
 width:120px;
+
 margin-bottom:15px;
+
 }
 
 .header h1{
-font-size:clamp(32px,4vw,46px);
-font-weight:700;
+
+font-size:clamp(36px,4vw,52px);
+
+letter-spacing:1px;
+
 }
 
 .header p{
-margin-top:10px;
+
+margin-top:12px;
+
 font-size:18px;
+
 opacity:.95;
+
 }
+
+/* CONTENIDO */
 
 .content{
+
 padding:40px;
+
 display:flex;
+
 flex-direction:column;
+
 gap:35px;
+
 }
 
+/* TARJETAS */
+
 .card{
-background:#111a3a;
+
+background:rgba(20,28,60,.8);
+
 border-radius:18px;
+
 padding:35px;
-border:1px solid rgba(255,255,255,0.08);
+
+border:1px solid rgba(255,255,255,.06);
+
+box-shadow:
+
+0 10px 30px rgba(0,0,0,.5);
+
 }
 
 .card h2{
+
 color:#7fe7ff;
+
 margin-bottom:15px;
+
+font-size:28px;
+
 }
 
 .card p{
+
 font-size:18px;
+
 line-height:1.6;
+
+color:#e4f2ff;
+
 }
 
+/* EJEMPLOS */
+
 .examples{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+
+grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+
 gap:20px;
+
 margin-top:20px;
+
 }
 
 .example{
+
 background:#0e1630;
+
 padding:20px;
+
 border-radius:12px;
+
 text-align:center;
-font-size:24px;
+
+font-size:26px;
+
+border:1px solid rgba(0,255,255,.2);
+
+transition:.25s;
+
 }
+
+.example:hover{
+
+transform:translateY(-6px);
+
+box-shadow:0 0 20px rgba(0,255,255,.35);
+
+}
+
+/* CANVAS */
 
 canvas{
+
 width:100%;
 height:420px;
+
 background:#0b1126;
+
 border:2px dashed #3ad6ff;
+
 border-radius:12px;
+
 touch-action:none;
+
 }
 
-.buttons{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:20px;
-}
+/* BOTONES */
 
 button{
+
 padding:14px 20px;
+
 border:none;
+
 border-radius:12px;
+
 font-size:16px;
+
 cursor:pointer;
+
 color:white;
-background:linear-gradient(135deg,#00c6ff,#0072ff);
-transition:.2s;
+
+background:
+
+linear-gradient(135deg,#00c6ff,#0072ff);
+
+box-shadow:
+
+0 0 15px rgba(0,198,255,.6);
+
+transition:.25s;
+
 }
 
 button:hover{
-transform:translateY(-2px);
+
+transform:translateY(-3px);
+
+box-shadow:
+
+0 0 25px rgba(0,198,255,.9);
+
 }
 
-.menu-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
+.buttons{
+
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+
 margin-top:20px;
+
+}
+
+/* MENÚ */
+
+.menu-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+margin-top:25px;
+
 }
 
 .menu-item{
+
 background:#0e1630;
+
 padding:25px;
+
 border-radius:14px;
+
 text-align:center;
+
 cursor:pointer;
+
+border:1px solid rgba(0,255,255,.2);
+
 transition:.25s;
-border:1px solid rgba(255,255,255,.1);
+
+font-size:18px;
+
 }
 
 .menu-item:hover{
-transform:translateY(-5px);
-box-shadow:0 0 20px rgba(0,255,255,.3);
+
+transform:translateY(-6px);
+
+box-shadow:0 0 20px rgba(0,255,255,.35);
+
 }
 
+/* UNIDADES */
+
 .unit{
+
 display:none;
+
 }
 
 .unit.active{
+
 display:block;
+
 }
 
+/* JUEGO SÁNDWICH */
+
 .sandwich-area{
+
 display:flex;
 flex-direction:column;
 align-items:center;
 gap:20px;
+
 }
 
 .sandwich{
+
 min-height:200px;
+
 width:220px;
+
 display:flex;
+
 flex-direction:column-reverse;
+
 align-items:center;
+
 gap:6px;
+
 }
 
 .layer{
+
 font-size:45px;
+
 }
 
 .ingredients{
+
 display:flex;
 gap:15px;
 flex-wrap:wrap;
 justify-content:center;
+
 }
 
 .ingredient{
+
 font-size:40px;
+
 background:#0e1630;
+
 padding:10px 20px;
+
 border-radius:12px;
+
 cursor:pointer;
+
+border:1px solid rgba(0,255,255,.2);
+
+transition:.2s;
+
 }
 
-.nav{
-display:flex;
-justify-content:space-between;
-padding:25px;
-background:#0c1430;
+.ingredient:hover{
+
+transform:scale(1.15);
+
+box-shadow:0 0 15px rgba(0,255,255,.5);
+
 }
+
+/* NAVEGACIÓN */
+
+.nav{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:25px;
+
+background:#0c1430;
+
+}
+
+/* RESPONSIVE */
 
 @media(max-width:700px){
 
 .nav{
+
 flex-direction:column;
-gap:10px;
+
+gap:12px;
+
 }
 
 }
@@ -225,29 +448,22 @@ gap:10px;
 
 <h1>RoboCode eBook</h1>
 
-<p>
-Aprende robótica y programación de una forma innovadora y desarrolla las habilidades tecnológicas del siglo XXI
-</p>
+<p>Desarrolla las habilidades tecnológicas del siglo XXI</p>
 
 </div>
 
 <div class="content">
 
-<!-- PORTADA / MENÚ -->
+<!-- MENÚ -->
 
 <div class="unit active" id="menu">
 
 <div class="card">
 
-<h2>Bienvenido al RoboCode eBook</h2>
+<h2>Bienvenido</h2>
 
 <p>
-Este eBook interactivo fue creado para que los alumnos aprendan robótica, tecnología y programación de manera divertida.
-Aquí podrás realizar actividades directamente en el libro, resolver retos y desarrollar pensamiento lógico como un verdadero programador.
-</p>
-
-<p>
-Selecciona una unidad para comenzar:
+Este eBook interactivo te permitirá aprender robótica y programación realizando actividades dentro del mismo libro.
 </p>
 
 <div class="menu-grid">
@@ -282,10 +498,10 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <div class="examples">
 
-<div class="example">📱 Celular</div>
-<div class="example">💻 Computadora</div>
-<div class="example">🤖 Robot</div>
-<div class="example">🚦 Semáforo</div>
+<div class="example">📱</div>
+<div class="example">💻</div>
+<div class="example">🤖</div>
+<div class="example">🚦</div>
 
 </div>
 
@@ -303,8 +519,6 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 
 <button onclick="setTool('pen')">✏️ Lápiz</button>
 <button onclick="setTool('eraser')">🧽 Borrador</button>
-<button onclick="saveDrawing()">💾 Guardar</button>
-<button onclick="enableEdit()">✏️ Editar</button>
 
 </div>
 
@@ -324,8 +538,6 @@ La tecnología son herramientas que usamos para resolver problemas o hacer nuest
 Antes de programar debemos aprender a pensar paso a paso.
 </p>
 
-<p><b>Ejemplo: Lavarse los dientes</b></p>
-
 <p>
 1️⃣ Tomar el cepillo<br>
 2️⃣ Poner pasta<br>
@@ -333,7 +545,7 @@ Antes de programar debemos aprender a pensar paso a paso.
 4️⃣ Enjuagar
 </p>
 
-<p>Eso se llama <b>algoritmo</b>.</p>
+<p>Esto se llama algoritmo.</p>
 
 </div>
 
@@ -355,7 +567,7 @@ Antes de programar debemos aprender a pensar paso a paso.
 </div>
 
 <button onclick="checkSandwich()">Verificar</button>
-<button onclick="resetSandwich()">🔄 Intentar otra vez</button>
+<button onclick="resetSandwich()">Intentar otra vez</button>
 
 <p id="result"></p>
 
@@ -369,17 +581,14 @@ Antes de programar debemos aprender a pensar paso a paso.
 
 <div class="nav">
 
-<button onclick="goMenu()">🏠 Menú</button>
-
-<button onclick="nextUnit()">Unidad siguiente ➡</button>
+<button onclick="goMenu()">Menú</button>
+<button onclick="nextUnit()">Unidad siguiente</button>
 
 </div>
 
 </div>
 
 <script>
-
-/* NAVEGACIÓN */
 
 const units=document.querySelectorAll(".unit")
 
@@ -392,7 +601,9 @@ document.getElementById(id).classList.add("active")
 }
 
 function goMenu(){
+
 showUnit("menu")
+
 }
 
 function goUnit(n){
@@ -412,28 +623,41 @@ showUnit("unidad2")
 /* DIBUJO */
 
 const canvas=document.getElementById("canvas")
+
 const ctx=canvas.getContext("2d")
 
 let drawing=false
+
 let tool=null
 
 canvas.width=canvas.offsetWidth
+
 canvas.height=canvas.offsetHeight
 
 canvas.addEventListener("pointerdown",e=>{
+
 if(tool==null)return
+
 drawing=true
+
 draw(e)
+
 })
 
 canvas.addEventListener("pointermove",e=>{
+
 if(!drawing)return
+
 draw(e)
+
 })
 
 canvas.addEventListener("pointerup",()=>{
+
 drawing=false
+
 ctx.beginPath()
+
 })
 
 function draw(e){
@@ -441,36 +665,46 @@ function draw(e){
 const rect=canvas.getBoundingClientRect()
 
 const x=e.clientX-rect.left
+
 const y=e.clientY-rect.top
 
 if(tool==="pen"){
-ctx.globalCompositeOperation="source-over"
+
 ctx.strokeStyle="#ffffff"
+
 ctx.lineWidth=5
+
 }
 
 if(tool==="eraser"){
+
 ctx.globalCompositeOperation="destination-out"
+
 ctx.lineWidth=25
+
+}else{
+
+ctx.globalCompositeOperation="source-over"
+
 }
 
 ctx.lineCap="round"
 
 ctx.lineTo(x,y)
+
 ctx.stroke()
 
 ctx.beginPath()
+
 ctx.moveTo(x,y)
 
 }
 
 function setTool(t){
+
 tool=t
+
 }
-
-function saveDrawing(){}
-
-function enableEdit(){}
 
 /* SÁNDWICH */
 
@@ -483,12 +717,17 @@ const sandwich=document.getElementById("sandwich")
 let emoji=""
 
 if(type==="pan") emoji="🥖"
+
 if(type==="jamon") emoji="🍖"
+
 if(type==="queso") emoji="🧀"
+
 if(type==="panTop") emoji="🥖"
 
 const layer=document.createElement("div")
+
 layer.className="layer"
+
 layer.innerText=emoji
 
 sandwich.appendChild(layer)
@@ -505,11 +744,11 @@ const result=document.getElementById("result")
 
 if(JSON.stringify(sandwichOrder)===JSON.stringify(correct)){
 
-result.innerHTML="🎉 ¡Perfecto! Pensaste como un programador."
+result.innerHTML="¡Correcto!"
 
 }else{
 
-result.innerHTML="❌ Ese orden no es correcto. Intenta otra vez."
+result.innerHTML="Intenta otra vez"
 
 }
 
